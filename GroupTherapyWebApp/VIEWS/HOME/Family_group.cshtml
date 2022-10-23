@@ -1,11 +1,3 @@
-@{
-    ViewData["Title"] = "Family_Group";
-}
-
-@{
-    ViewBag.Title = "Family_Group";
-}
-
 <!--Developed by Ashton Nicholson 4/10/2022 -->
 <html>
 
@@ -17,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | Family Group</title>
-    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
+    <link id="pagestyle" rel="stylesheet" href="styles/style.css" />
     <!--css stylesheet-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="icon" href="" />
@@ -46,15 +38,9 @@
               <p class="navigationTitleItem"><a href="index.html">Home</a></p>
              <p class="navigationTitleItem"><a href="">Item</a></p>
             -->
-            <p class="navigationItemIcon">
-                <span>
-                    <a href="@Url.Action("Dashboard", "Home")" target="_self">
-                        <i class="fa fa-user"
+            <p class="navigationItemIcon"><span><a href="dashboard.html" target="_self"><i class="fa fa-user"
               aria-hidden="true" title="User Profile"></i></a></span></p>
-            <p class="navigationItemIcon">
-                <span>
-                    <a href="@Url.Action("Family_group", "Home")" target="_self">
-                        <i class="fa fa-users"
+            <p class="navigationItemIcon"><span><a href="family_group.html" target="_self"><i class="fa fa-users"
               aria-hidden="true" title="Family Groups"></i></a></span></p>
             <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
               aria-hidden="true" title="Pets"></i></a></span></p>
@@ -94,7 +80,7 @@
             <div class="familyGroupInner">     
 
               <div class="familyUserGridItem">
-                        <a href="@Url.Action("Member_profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileMain"></div></a>
+                <a href="member_profile.html" target="_self"><div class="dashboardUserImage" id="profileMain"></div></a>
                 <p class="textMemberDashboardName" id="member_Name_One">Laurie Harper</p>
                 <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
               </div>    
@@ -108,19 +94,19 @@
             <div class="familyGroupInner"> 
 
               <div class="familyUserGridItem">
-                        <a href="@Url.Action("Member_profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileMain"></div></a>
+                <a href="member_profile.html" target="_self"><div class="dashboardUserImage" id="profileMain"></div></a>
                 <p class="textMemberDashboardName" id="member_Name_One">Laurie Harper</p>
                 <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
               </div>    
               
               <div class="familyUserGridItem">
-                        <a href="@Url.Action("Member_profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileTwo"></div></a>
+                <a href="member_profile.html" target="_self"><div class="dashboardUserImage" id="profileTwo"></div></a>
                 <p class="textMemberDashboardName" id="member_Name_One">Ash Harper</p>
                 <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
               </div>   
 
               <div class="familyUserGridItem">
-                        <a href="@Url.Action("Member_profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileThree"></div></a>
+                <a href="member_profile.html" target="_self"><div class="dashboardUserImage" id="profileThree"></div></a>
                 <p class="textMemberDashboardName" id="member_Name_One">Ben Harper</p>
                 <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
               </div> 
@@ -141,13 +127,13 @@
             <div class="familyGroupInner">     
 
               <div class="familyUserGridItem">
-                <div class="dashboardUserImage" id="profileAnimalOne"></div>
+                <a href="pet_profile.html"><div class="dashboardUserImage" id="profileAnimalOne"></div></a>
                 <p class="textMemberDashboardName" id="member_Name_One">Rex Harper</p>
                 <p class="textMemberDashboard" id="memberOne_Attribute_One">Dog Breed</p>                                                
               </div>    
 
               <div class="familyUserGridItem">
-                <div class="dashboardUserImage" id="profileAnimalTwo"></div>
+                <a href="pet_profile.html"><div class="dashboardUserImage" id="profileAnimalTwo"></div></a>
                 <p class="textMemberDashboardName" id="member_Name_One">Bandit Harper</p>
                 <p class="textMemberDashboard" id="memberOne_Attribute_One">Dog Breed</p>                                                
               </div>    

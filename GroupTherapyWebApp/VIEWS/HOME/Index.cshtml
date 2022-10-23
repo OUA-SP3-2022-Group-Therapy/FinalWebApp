@@ -1,11 +1,3 @@
-@{
-    ViewData["Title"] = "Login";
-}
-
-@{
-    ViewBag.Title = "Login";
-}
-
 <!--Developed by Ashton Nicholson 4/10/2022 -->
 <html>
 
@@ -17,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | Welcome</title>
-    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
+    <link id="pagestyle" rel="stylesheet" href="styles/style.css" />
     <!--css stylesheet-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="icon" href="" />    
@@ -42,7 +34,7 @@
                 <p class="pageLogoFancy">PetPal</p>
                 <div class="welcomeButton">
                     <button class= "buttonCustomTitle" onclick="showSignUp();">Log In</button>
-                    <a href="@Url.Action("Dashboard", "Home")" target ="_self"> <button class= "buttonCustomTitle" >Sign In</button></a>
+                    <a href="dashboard.html" target ="_self"> <button class= "buttonCustomTitle" >Sign In</button></a>
                 </div>
             </div>
             <!--Image/Slideshow area.-->
@@ -87,7 +79,7 @@
                     <p class="forgotText" title="Reset Your Password.">Forgot Password</p>            
                 </div>
                 <div class="overlaySectionForm">
-                    <a href="@Url.Action("Dashboard", "Home")" target ="_self"><button class= "buttonCustomTitle" onclick="showSignUp()">Log in</button></a>
+                    <a href="dashboard.html" target ="_self"><button class= "buttonCustomTitle" onclick="showSignUp()">Log in</button></a>
                 </div>
                 <br></br>
             </div>
@@ -95,7 +87,7 @@
         </div> 
     </div>
           
-    <script src="~/js/signUpProtoytype.js"></script>        
+    <script src="scripts/signUpProtoytype.js"></script>        
 </body>
 
 </html>

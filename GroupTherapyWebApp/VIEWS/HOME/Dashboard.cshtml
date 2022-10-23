@@ -1,11 +1,3 @@
-@{
-    ViewData["Title"] = "Dashboard";
-}
-
-@{
-    ViewBag.Title = "Dashboard";
-}
-
 <!--Developed by Ashton Nicholson 4/10/2022 -->
 <html>
 
@@ -17,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | Dashboard</title>
-    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
+    <link id="pagestyle" rel="stylesheet" href="styles/style.css" />
     <!--css stylesheet-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="icon" href="" />
@@ -31,7 +23,7 @@
         <!-- Add in the Main Navigation Menu -->
         <div class="navigationBar">
             <!-- Options for Icon based LOGO or Image based LOGO *******************-->            
-            <p class="navigationLogoIcon"><span><a href="@Url.Action("Index", "Home")" target="_self"><i class="fa fa-user-circle" aria-hidden="true"></i></a></span></p>
+            <p class="navigationLogoIcon"><span><a href="index.html" target="_self"><i class="fa fa-user-circle" aria-hidden="true"></i></a></span></p>
             <!--<p class="navigationLogo"><span><img class="navigationLogoImage" src="images/logo.png"></img></span></p>-->
             <p class="navigationTitleName">LOGO</p>
             <p class="navigationTitleAnchor"></p>
@@ -46,9 +38,9 @@
               <p class="navigationTitleItem"><a href="index.html">Home</a></p>
              <p class="navigationTitleItem"><a href="">Item</a></p>
             -->
-            <p class="navigationItemIcon"><span><a href="@Url.Action("Dashboard", "Home")" target="_self"><i class="fa fa-user"
+            <p class="navigationItemIcon"><span><a href="dashboard.html" target="_self"><i class="fa fa-user"
                             aria-hidden="true" title="User Profile"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="@Url.Action("Family_group", "Home")" target="_self"><i class="fa fa-users"
+            <p class="navigationItemIcon"><span><a href="family_group.html" target="_self"><i class="fa fa-users"
                             aria-hidden="true" title="Family Groups"></i></a></span></p>
             <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
                             aria-hidden="true" title="Pets"></i></a></span></p>
@@ -121,7 +113,7 @@
             <div class="dashboardUsers">
 
                 <div class="dashboardUsersPartition">
-                        <a href="@Url.Action("Member_profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileOne"></div></a>
+                   <a href="member_profile.html" target="_self"><div class="dashboardUserImage" id="profileOne"></div></a>
                     <p class="textMemberDashboardName" id="member_Name_One">Laurie Harper</p>
                     <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes Number 1/3</p>                     
                     <p class="textMemberDashboard" id="memberOne_Attribute_Two">Attributes Number 2/3</p>                     
@@ -129,14 +121,14 @@
                 </div>
 
                 <div class="dashboardUsersPartition">
-                        <a href="@Url.Action("Member_profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileTwo"></div></a>
+                    <a href="member_profile.html" target="_self"><div class="dashboardUserImage" id="profileTwo"></div></a>
                     <p class="textMemberDashboardName" id="member_Name_Two">Alexander Evans</p>                    
                     <p class="textMemberDashboard" id="memberTwo_Attribute_One">Attributes Number 1/2</p>                     
                     <p class="textMemberDashboard" id="memberTwo_Attribute_Two">Attributes Number 2/2</p>                                                   
                 </div>
 
                 <div class="dashboardUsersPartition">
-                        <a href="@Url.Action("Member_profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileThree"></div></a>
+                    <a href="member_profile.html" target="_self"><div class="dashboardUserImage" id="profileThree"></div></a>
                     <p class="textMemberDashboardName" id="member_Name_Three">Stephanie Miranda</p>                    
                     <p class="textMemberDashboard" id="memberThree_Attribute_One">Attributes Number 1/1</p>  
                 </div>   
@@ -176,7 +168,39 @@
 
         </div>
 
-        <script src="~/js/prototypeScript.js"></script>      
+        <div class="dividerSection"> <!--menu divider--></div>
+        
+
+        <!--Completed events-->
+        <div class="upcomingEvents">
+
+            <div class="upcomingEventsHolder">
+                <p class="textEvents">completed Events</p>
+                <!--Grid item.-->
+                <div class="upcomingEventsGridItem">
+                    <p class="textEvents">In 2 Hours. FEEDING TIME</p>
+                </div>
+
+                <div class="upcomingEventsGridItem">
+                    <p class="textEvents">Details of completed event.</p>
+                </div>
+
+                <div class="upcomingEventsGridItem">
+                    <p class="textEvents">Details of completed event.</p>
+                </div>
+
+                <div class="upcomingEventsGridItem">
+                    <p class="textEvents">Details of completed event.</p>
+                </div>
+
+                <div class="upcomingEventsGridItem">
+                    <p class="textEvents">Details of completed event.</p>
+                </div>
+                
+            </div>
+        </div>
+
+        <script src="scripts/prototypeScript.js"></script>      
 </body>
 
 </html>
