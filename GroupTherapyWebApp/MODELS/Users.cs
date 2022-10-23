@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace $safeprojectname$.Models
+namespace GroupTherapyApp.Models
 {
     public class Users
     {

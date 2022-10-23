@@ -1,26 +1,26 @@
-﻿using $safeprojectname$.Models;
+﻿using GroupTherapyApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace $safeprojectname$.Controllers
+namespace GroupTherapyApp.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult index()
         {
             return View();
         }
 
-        public IActionResult Dashboard()
+        public IActionResult dashboard()
         {
             return View();
         }
 
-        public IActionResult Family_Group()
+        public IActionResult family_Group()
         {
             return View();
         }
 
-        public IActionResult Member_Profile()
+        public IActionResult member_profile()
         {
             return View();
         }

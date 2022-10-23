@@ -1,3 +1,11 @@
+@{
+    ViewData["Title"] = "member_profile";
+}
+
+@{
+    ViewBag.Title = "member_profile";
+}
+
 <!--Developed by Ashton Nicholson 4/10/2022 -->
 <html>
 
@@ -9,7 +17,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | My Profile</title>
-    <link id="pagestyle" rel="stylesheet" href="styles/style.css" />
+    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
     <!--css stylesheet-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="icon" href="" />
@@ -23,7 +31,11 @@
         <!-- Add in the Main Navigation Menu -->
         <div class="navigationBar">
             <!-- Options for Icon based LOGO or Image based LOGO *******************-->
-            <p class="navigationLogoIcon"><span><a href="index.html" target="_self"><i class="fa fa-user-circle" aria-hidden="true"></i></a></span></p>
+            <p class="navigationLogoIcon">
+                <span>
+                    <a href="@Url.Action("index", "home")" target="_self"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
+                </span>
+            </p>
             <!--<p class="navigationLogo"><span><img class="navigationLogoImage" src="images/logo.png"></img></span></p>-->
             <p class="navigationTitleName">LOGO</p>
             <p class="navigationTitleAnchor"></p>
@@ -38,9 +50,15 @@
               <p class="navigationTitleItem"><a href="index.html">Home</a></p>
              <p class="navigationTitleItem"><a href="">Item</a></p>
             -->
-            <p class="navigationItemIcon"><span><a href="dashboard.html" target="_self"><i class="fa fa-user"
+            <p class="navigationItemIcon">
+                <span>
+                    <a href="@Url.Action("dashboard", "home")" target="_self">
+                        <i class="fa fa-user"
               aria-hidden="true" title="User Profile"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="family_group.html" target="_self"><i class="fa fa-users"
+            <p class="navigationItemIcon">
+                <span>
+                    <a href="@Url.Action("family_group", "home")" target="_self">
+                        <i class="fa fa-users"
               aria-hidden="true" title="Family Groups"></i></a></span></p>
             <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
               aria-hidden="true" title="Pets"></i></a></span></p>
@@ -82,7 +100,8 @@
               <p class="textEvents">2. Evans&nbsp;&nbsp;</p>  
             </div>
 
-            <a href="pet_profile.html" target="_self"><div class="membersProfileSectionDetails">
+                <a href="@Url.Action("pet_profile", "home")" target="_self">
+                    <div class="membersProfileSectionDetails">
               <p class="textEvents" style="font-size:x-large">Pets&nbsp;&nbsp;</p>              
               <p class="textEvents">1. Rex Harper&nbsp;&nbsp;</p>              
               <p class="textEvents">2. Bandit Harper&nbsp;&nbsp;</p> 
@@ -95,13 +114,13 @@
             <div class="familyGroupInner"> 
 
               <div class="familyUserGridItem">
-                <a href="family_group.html" target="_self"><div class="dashboardUserImage" id="profileMain"></div></a>
+                        <a href="@Url.Action("family_group", "home")" target="_self"><div class="dashboardUserImage" id="profileMain"></div></a>
                 <p class="textMemberDashboardName" id="member_Name_One">Harper Family</p>
                 <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
               </div>    
               
               <div class="familyUserGridItem">
-                <a href="family_group.html" target="_self"><div class="dashboardUserImage" id="profileTwo"></div></a>
+                        <a href="@Url.Action("family_group", "home")" target="_self"><div class="dashboardUserImage" id="profileTwo"></div></a>
                 <p class="textMemberDashboardName" id="member_Name_One">Evans Family</p>
                 <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
               </div>   

@@ -1,3 +1,11 @@
+@{
+    ViewData["Title"] = "index";
+}
+
+@{
+    ViewBag.Title = "index";
+}
+
 <!--Developed by Ashton Nicholson 4/10/2022 -->
 <html>
 
@@ -9,7 +17,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | Welcome</title>
-    <link id="pagestyle" rel="stylesheet" href="styles/style.css" />
+    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
     <!--css stylesheet-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="icon" href="" />    
@@ -34,12 +42,12 @@
                 <p class="pageLogoFancy">PetPal</p>
                 <div class="welcomeButton">
                     <button class= "buttonCustomTitle" onclick="showSignUp();">Log In</button>
-                    <a href="dashboard.html" target ="_self"> <button class= "buttonCustomTitle" >Sign In</button></a>
+                    <a href="@Url.Action("dashboard", "home")" target="_self"> <button class="buttonCustomTitle">Sign In</button></a>
                 </div>
             </div>
             <!--Image/Slideshow area.-->
             <div class="welcomeScreenSection">
-                <img src="images/cat_welcome.png" alt="Cat Head."></img>
+                <img src="~/images/cat_welcome.png" alt="Cat Head."></img>
             </div>            
         </div>
 
@@ -79,7 +87,7 @@
                     <p class="forgotText" title="Reset Your Password.">Forgot Password</p>            
                 </div>
                 <div class="overlaySectionForm">
-                    <a href="dashboard.html" target ="_self"><button class= "buttonCustomTitle" onclick="showSignUp()">Log in</button></a>
+                        <a href="@Url.Action("dashboard", "home")" target="_self"><button class="buttonCustomTitle" onclick="showSignUp()">Log in</button></a>
                 </div>
                 <br></br>
             </div>
@@ -87,7 +95,7 @@
         </div> 
     </div>
           
-    <script src="scripts/signUpProtoytype.js"></script>        
+    <script src="~/js/signUpProtoytype.js"></script>        
 </body>
 
 </html>

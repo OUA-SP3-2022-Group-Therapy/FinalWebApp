@@ -7,10 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\dashboard.cshtml" />
-    <Content Remove="Views\family_group.cshtml" />
-    <Content Remove="Views\index.cshtml" />
-    <Content Remove="Views\member_profile.cshtml" />
+    <Content Remove="views\dashboard.cshtml" />
+    <Content Remove="views\family_group.cshtml" />
+    <Content Remove="views\home\dashboard.cshtml" />
+    <Content Remove="views\home\family_group.cshtml" />
+    <Content Remove="views\home\index.cshtml" />
+    <Content Remove="views\home\member_profile.cshtml" />
+    <Content Remove="views\home\pet_profile.cshtml" />
+    <Content Remove="views\index.cshtml" />
+    <Content Remove="views\member_profile.cshtml" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -27,6 +32,14 @@
   <ItemGroup>
     <Folder Include="Areas\" />
     <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="views\home\dashboard.cshtml" />
+    <None Include="views\home\family_group.cshtml" />
+    <None Include="views\home\index.cshtml" />
+    <None Include="views\home\member_profile.cshtml" />
+    <None Include="views\home\pet_profile.cshtml" />
   </ItemGroup>
 
 </Project>
