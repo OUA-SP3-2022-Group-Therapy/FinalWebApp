@@ -1,9 +1,9 @@
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Login";
 }
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
 }
 
 <!--Developed by Ashton Nicholson 4/10/2022 -->
@@ -42,12 +42,12 @@
                 <p class="pageLogoFancy">PetPal</p>
                 <div class="welcomeButton">
                     <button class= "buttonCustomTitle" onclick="showSignUp();">Log In</button>
-                    <a href="@Url.Action("Dashboard", "Home")" target="_self"> <button class="buttonCustomTitle">Sign In</button></a>
+                    <a href="@Url.Action("Dashboard", "Home")" target ="_self"> <button class= "buttonCustomTitle" >Sign In</button></a>
                 </div>
             </div>
             <!--Image/Slideshow area.-->
             <div class="welcomeScreenSection">
-                <img src="~/images/cat_welcome.png" alt="Cat Head."></img>
+                <img src="images/cat_welcome.png" alt="Cat Head."></img>
             </div>            
         </div>
 
@@ -99,3 +99,4 @@
 </body>
 
 </html>
+

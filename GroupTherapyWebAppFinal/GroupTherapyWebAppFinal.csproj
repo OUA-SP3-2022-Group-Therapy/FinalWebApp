@@ -6,27 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="Views\Home\Dashboard.cshtml" />
-    <Content Remove="Views\Home\Family_Group.cshtml" />
-    <Content Remove="Views\Home\Index.cshtml" />
-    <Content Remove="Views\Home\Member_Profile.cshtml" />
-    <Content Remove="Views\Home\Pet_Profile.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\js\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Home\Dashboard.cshtml" />
-    <None Include="Views\Home\Family_Group.cshtml" />
-    <None Include="Views\Home\Index.cshtml" />
-    <None Include="Views\Home\Member_Profile.cshtml" />
-    <None Include="Views\Home\Pet_Profile.cshtml" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.10" />
@@ -41,5 +20,19 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
   </ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Areas\" />
+		<Folder Include="Data\" />
+		<Folder Include="Views\Shared\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="Views\Home\Dashboard.cshtml" />
+	  <None Include="Views\Home\Family_Group.cshtml" />
+	  <None Include="Views\Home\Index.cshtml" />
+	  <None Include="Views\Home\Member_Profile.cshtml" />
+	  <None Include="Views\Home\Pet_Profile.cshtml" />
+	</ItemGroup>
 
 </Project>
