@@ -8,9 +8,9 @@ namespace GroupTherapyWebAppFinal.Models
         [StringLength(12)]
         public int UserID { get; set; }
         [StringLength(100)]
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string? Name { get; set; }
+        public char Email { get; set; }
+        public char Password { get; set; }
+        public string Name { get; set; }
         [StringLength(20)]
         public string? UserType { get; set; }
         [StringLength(10)]
