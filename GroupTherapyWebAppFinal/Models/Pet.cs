@@ -5,7 +5,6 @@ namespace GroupTherapyWebAppFinal.Models
     public class Pet
     {
         [Required]
-        [StringLength(12)]
         [Key]
         public int PetID { get; set; }
         public string? Name { get; set; }

@@ -5,7 +5,6 @@ namespace GroupTherapyWebAppFinal.Models
     public class Event
     {
         [Required]
-        [StringLength(12)]
         [Key]
         public int ScheduleID { get; set; }
         [StringLength(30)]

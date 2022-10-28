@@ -5,7 +5,6 @@ namespace GroupTherapyWebAppFinal.Models
     public class Trends
     {
         [Required]
-        [StringLength(12)]
         [Key]
         public int PetID { get; set; }
         [DataType(DataType.Date)]

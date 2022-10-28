@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YjCLT2fkYu3n3YYrsqe4WoBt14NqqJITHHClnOhd0FE=",
+  "Hash": "kkF9rxS+uHmEabt0VIRDqxEGp8QHu53Fj1jG365oTik=",
   "Source": "GroupTherapyWebAppFinal",
   "BasePath": "_content/GroupTherapyWebAppFinal",
   "Mode": "Default",
@@ -1154,6 +1154,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\signUpProtoytype.js"
+    },
+    {
+      "Identity": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\wwwroot\\js\\Validation.js",
+      "SourceId": "GroupTherapyWebAppFinal",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\wwwroot\\",
+      "BasePath": "_content/GroupTherapyWebAppFinal",
+      "RelativePath": "js/Validation.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Validation.js"
     },
     {
       "Identity": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

@@ -5,7 +5,6 @@ namespace GroupTherapyWebAppFinal.Models
     public class FamilyGroup
     {
         [Required]
-        [StringLength(12)]
         [Key]
         public int GroupID { get; set; }
         [StringLength(30)]
