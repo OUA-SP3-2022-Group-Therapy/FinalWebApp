@@ -25,6 +25,10 @@ namespace GroupTherapyWebAppFinal.Data
         {
             modelBuilder.Entity<Membership>()
                 .HasKey(c => new { c.UserID, c.GroupID });
+            modelBuilder.Entity<Event>()
+                .HasKey(c => new { c.ScheduleID, c.EventName });
+            modelBuilder.Entity<Trends>()
+                .HasKey(c => new { c.PetID, c.Date });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

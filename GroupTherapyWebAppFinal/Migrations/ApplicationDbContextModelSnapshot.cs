@@ -20,17 +20,16 @@ namespace GroupTherapyWebAppFinal.Migrations
             modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Event", b =>
                 {
                     b.Property<int>("ScheduleID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("EventName")
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CompletedBy")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("EndDateTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("EventName")
-                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EventStatus")
@@ -40,7 +39,7 @@ namespace GroupTherapyWebAppFinal.Migrations
                     b.Property<DateTime>("StartDateTime")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ScheduleID");
+                    b.HasKey("ScheduleID", "EventName");
 
                     b.ToTable("Event");
                 });
@@ -151,7 +150,6 @@ namespace GroupTherapyWebAppFinal.Migrations
             modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Trends", b =>
                 {
                     b.Property<int>("PetID")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
@@ -163,7 +161,7 @@ namespace GroupTherapyWebAppFinal.Migrations
                     b.Property<int?>("Weight")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("PetID");
+                    b.HasKey("PetID", "Date");
 
                     b.ToTable("Trends");
                 });

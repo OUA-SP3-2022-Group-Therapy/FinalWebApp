@@ -5,10 +5,10 @@ namespace GroupTherapyWebAppFinal.Models
     public class Event
     {
         [Required]
-        [Key]
         public int ScheduleID { get; set; }
+        [Required]
         [StringLength(30)]
-        public string? EventName { get; set; }
+        public string EventName { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime StartDateTime { get; set; }
