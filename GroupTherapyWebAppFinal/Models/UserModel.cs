@@ -16,7 +16,7 @@ namespace GroupTherapyWebAppFinal.Models
         public string? Gender { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
 
         public UserModel()
         {

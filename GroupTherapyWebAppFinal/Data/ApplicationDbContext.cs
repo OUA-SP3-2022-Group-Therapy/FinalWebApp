@@ -3,38 +3,31 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Sqlite;
 using GroupTherapyWebAppFinal.Models;
+using GroupTherapyWebAppFinal.Data;
+using System.Security.Policy;
+using System.Runtime.ConstrainedExecution;
 
 namespace GroupTherapyWebAppFinal.Data
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-            => CreateHostBuilder(args).Build().Run();
-
-        // EF Core uses this method at design time to access the DbContext
-        public static IHostBuilder CreateHostBuilder(string[] args)
-            => Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(
-                    webBuilder => webBuilder.UseStartup<Startup>());
-    }
-
-    public class Startup
-    {
-        public void ConfigureServices(IServiceCollection services)
-            => services.AddDbContext<ApplicationDbContext>();
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-        }
-    }
-
+{    
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public DbSet<UserModel> UserModel { get; set; }
+        public DbSet<FamilyGroup> FamilyGroup { get; set; }
+        public DbSet<Membership> Membership { get; set; }
+        public DbSet<Schedule> Schedule { get; set; }
+        public DbSet<Event> Event { get; set; }
+        public DbSet<Pet> Pet { get; set; }
+        public DbSet<Trends> Trends { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Membership>()
+                .HasKey(c => new { c.UserID, c.GroupID });
         }
-        //public DbSet<UserModel> UserModel { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlite("@Data Source=Database.db");
     }
 }
