@@ -135,7 +135,7 @@
 
 
         <div class="familyGroup">                        
-            <!--Family Headings Members-->
+            <!--Family Headings Members: BF 31/10/22-->
             <p class="pageTitleText"> Pets</p>  
 
             <div class="familyGroupInner">     
@@ -161,7 +161,29 @@
         </div>
     </div> <!--End of family group-->
 
-    
+      <!-- Add Family member -->
+     <div class="overlaySignUpBlur" id="overlaySignUpBlur">
+        <div class="overlaySignUp">
+            <div class="overlaySectionForm">
+                <p class="featureText">Add Family Member</p>
+                <div class="overlaySectionButtonLocation">
+                    <button class= "buttonCustomTitle" onclick="showSignUp();">&nbsp;X&nbsp;</button>
+                </div>
+                <div class="formSection">
+                    <p class="formText">Email</p>                
+                    <input type="text" placeholder="Email Address" id="Email"></input>
+                    <br></br>                    
+                   
+                </div>                                
+
+                <div class="overlaySectionForm">
+                    <a href="@Url.Action("Dashboard", "Home")" target ="_self"><button class= "buttonCustomTitle" onclick="showSignUp()">Add Family Member</button></a>
+                </div>
+                <br></br>
+                </div>
+            </div>
+        </div>               
+ 
     <div class="lineDividerSection"> <!--menu divider--></div>
        <!--Schedule-->
        <div class="sectionSub">              

@@ -1,10 +1,55 @@
 ﻿
 <html>
+    <!-- Developed by Bronagh Falloon on 31/10/2022 -->
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+        <meta name="description" content="signup Petpal" />
+        <!--meta description-->
+        <meta name="keywords" content="" />
+        <!--meta keywords-->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PetPal | Signup</title>
+        <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
+        <!--css stylesheet-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="icon" href="" />    
 </head>
 <body>
+    <div class="mainBox">
 
+        <!-- Add in the Main Navigation Menu -->
+        <div class="navigationBar">
+            <!-- Options for Icon based LOGO or Image based LOGO *******************-->            
+            <p class="navigationLogoIcon"><span><a href="@Url.Action("Index", "Home")" target="_self"><i class="fa fa-user-circle" aria-hidden="true"></i></a></span></p>
+            <!--<p class="navigationLogo"><span><img class="navigationLogoImage" src="images/logo.png"></img></span></p>-->
+            <p class="navigationTitleName">LOGO</p>
+            <p class="navigationTitleAnchor"></p>
+
+            <!--Search Entry-->
+            <form action="/" method="GET" class="form">
+                <input type="text" id="search" placeholder="Search..."></input>
+            </form>
+
+            <!-- Options for text based nav items or icons ***********************-->
+            <!-- Text Based.
+              <p class="navigationTitleItem"><a href="index.html">Home</a></p>
+             <p class="navigationTitleItem"><a href="">Item</a></p>
+            -->
+            <p class="navigationItemIcon">
+                <span>
+                    <a href="@Url.Action("Dashboard", "Home")" target="_self">
+                        <i class="fa fa-user"
+                            aria-hidden="true" title="User Profile"></i></a></span></p>
+            <p class="navigationItemIcon">
+                <span>
+                    <a href="@Url.Action("Family_Group", "Home")" target="_self">
+                        <i class="fa fa-users"
+                            aria-hidden="true" title="Family Groups"></i></a></span></p>
+            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
+                            aria-hidden="true" title="Pets"></i></a></span></p>
+            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-calendar"
+                            aria-hidden="true" title="Calendar"></i></a></span></p>
+        </div>
+    </div>>
 </body>
 </html>
