@@ -32,6 +32,6 @@ namespace GroupTherapyWebAppFinal.Data
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("@Data Source=Database.db");
+            => options.UseSqlite(@"Data Source=Database.db");
     }
 }
