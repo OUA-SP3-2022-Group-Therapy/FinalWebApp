@@ -11560,24 +11560,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mariu\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Jenni\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mariu\\Source\\Repos\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
+      "projectUniqueName": "C:\\Users\\Jenni\\Documents\\GitHub\\Group Therapy\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
       "projectName": "GroupTherapyWebAppFinal",
-      "projectPath": "C:\\Users\\mariu\\Source\\Repos\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
-      "packagesPath": "C:\\Users\\mariu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mariu\\Source\\Repos\\FinalWebApp\\GroupTherapyWebAppFinal\\obj\\",
+      "projectPath": "C:\\Users\\Jenni\\Documents\\GitHub\\Group Therapy\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
+      "packagesPath": "C:\\Users\\Jenni\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jenni\\Documents\\GitHub\\Group Therapy\\GroupTherapyWebAppFinal\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\mariu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Jenni\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11585,7 +11580,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
