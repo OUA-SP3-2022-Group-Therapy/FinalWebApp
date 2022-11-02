@@ -763,6 +763,21 @@ a:active {
     margin:0px;
 }
 
+.formTextSmaller {
+    color: var(--pal_title_text);
+    font-size: 0.9em;
+    text-align: left;
+    padding-top: 8px;
+    margin: 0px;
+}
+
+.formTextLarge {
+    color: var(--pal_title_text);
+    font-size: 1.5em;
+    text-align: left;
+    margin: 0px;
+}
+
 .forgotText{
     color:var(--pal_text_menu);
 }
