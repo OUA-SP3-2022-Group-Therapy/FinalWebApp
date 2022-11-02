@@ -35,32 +35,43 @@
         </div>
         <br>
 
-       <!--Page Text Area-->
+        <!--Page Text Area-->
         <div class="welcomeScreenMain">
             <div class="welcomeScreenSection">
                 <p class="pageTitleTextWelcome">Sign up to</p>
                 <p class="pageLogoFancy">PetPal</p>
+                <br>
                 <!--Form Buttons-->
-                <div class="welcomeButton">
-                    <button class="buttonCustomTitle">&nbsp;Email &nbsp;</button>
-                    <button class="buttonCustomTitle">&nbsp;Password &nbsp;</button>
-                    <button class="buttonCustomTitle">&nbsp;Confirm Password &nbsp;</button>
+                <form class="signUpForm" id="form" name="signupForm">
+                    <p class="formTextLarge">Email &nbsp;</p>
+                    <input type="email" id="emailAddress" name="email" style="margin-bottom:8px;"> </input>
+                    <br>
+                    <p class="formTextLarge">Password &nbsp;</p>
+                    <input type="password" id="password" name="pw" style=" margin-bottom:8px;"> </input>
+                    <p class="formTextLarge">Confirm Password &nbsp;</p>
 
+                    <input type="password" id="passwordConfirm" name="cpw" style="margin-bottom:8px;"> </input>
+                    <br></br>
+                    <p class="pageLogoFancy" style="font-size:1em; text-align: left;" id="messageArea">Please enter in details.</p>
+                    <p id="debug"></p>
+                </form>
+
+
+
+                <!--SignUp Button-->
+                <div>
+                    <button class="buttonCustomTitle" id="signUpButton" type="submit">&nbsp; Sign Up &nbsp;</button>
                 </div>
-            <!--SignUp Button-->
-            <div>
-                <button class="buttonCustomTitle">&nbsp; Sign Up &nbsp;</button>
-            </div>
-                
+
             </div>
             <!--Image/Slideshow area.-->
             <div class="welcomeScreenSection">
-                <img src="images/cat_welcome.png" alt="Cat Head."></img>
-            </div>            
+                 <img src="images/cat_welcome.png" alt="Cat Head."></img>
+            </div>
         </div>
     </div>
 
-
+    <script src="~/js/Validation.js"></script>
 </body>
 </html>
 
