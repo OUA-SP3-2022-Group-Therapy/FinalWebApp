@@ -11560,19 +11560,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\joshw\\.nuget\\packages\\": {}
+    "C:\\Users\\mariu\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
+      "projectUniqueName": "C:\\Users\\mariu\\Source\\Repos\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
       "projectName": "GroupTherapyWebAppFinal",
-      "projectPath": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
-      "packagesPath": "C:\\Users\\joshw\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\obj\\",
+      "projectPath": "C:\\Users\\mariu\\Source\\Repos\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
+      "packagesPath": "C:\\Users\\mariu\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mariu\\Source\\Repos\\FinalWebApp\\GroupTherapyWebAppFinal\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\joshw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mariu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11580,6 +11585,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
