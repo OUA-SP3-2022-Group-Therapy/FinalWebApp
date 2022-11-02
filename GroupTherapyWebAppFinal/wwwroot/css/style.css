@@ -613,6 +613,12 @@ a:active {
     overflow: scroll;
 }
 
+.signUpForm {
+    display: inline-block;
+    width: 500px;
+    height: auto;
+}
+
 
 /* Dividers */
 .lineDivider{
