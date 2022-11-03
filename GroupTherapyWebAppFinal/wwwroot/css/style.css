@@ -71,7 +71,10 @@
 }
 
 
-body {
+body,html {
+    height: 100%;
+    padding: 0;
+    margin: 0;
     font-family: verdana;
     background-color: var(--pal_background_colour);
     background-image: linear-gradient(to bottom right, var(--pal_first_background), var(--pal_last_background));
