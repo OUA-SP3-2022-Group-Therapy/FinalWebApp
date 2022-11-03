@@ -8,45 +8,45 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GroupTherapyWebAppFinal
 build_property.RootNamespace = GroupTherapyWebAppFinal
-build_property.ProjectDir = C:\Users\Jenni\Documents\GitHub\Group Therapy\GroupTherapyWebAppFinal\
+build_property.ProjectDir = C:\Users\mariu\Source\Repos\FinalWebApp\GroupTherapyWebAppFinal\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Jenni\Documents\GitHub\Group Therapy\GroupTherapyWebAppFinal
+build_property.MSBuildProjectDirectory = C:\Users\mariu\Source\Repos\FinalWebApp\GroupTherapyWebAppFinal
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Jenni/Documents/GitHub/Group Therapy/GroupTherapyWebAppFinal/Views/Home/CreateSchedule.cshtml]
+[C:/Users/mariu/Source/Repos/FinalWebApp/GroupTherapyWebAppFinal/Views/Home/CreateSchedule.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDcmVhdGVTY2hlZHVsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jenni/Documents/GitHub/Group Therapy/GroupTherapyWebAppFinal/Views/Home/Dashboard.cshtml]
+[C:/Users/mariu/Source/Repos/FinalWebApp/GroupTherapyWebAppFinal/Views/Home/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jenni/Documents/GitHub/Group Therapy/GroupTherapyWebAppFinal/Views/Home/Family_Group.cshtml]
+[C:/Users/mariu/Source/Repos/FinalWebApp/GroupTherapyWebAppFinal/Views/Home/Family_Group.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGYW1pbHlfR3JvdXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jenni/Documents/GitHub/Group Therapy/GroupTherapyWebAppFinal/Views/Home/Index.cshtml]
+[C:/Users/mariu/Source/Repos/FinalWebApp/GroupTherapyWebAppFinal/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jenni/Documents/GitHub/Group Therapy/GroupTherapyWebAppFinal/Views/Home/Member_Profile.cshtml]
+[C:/Users/mariu/Source/Repos/FinalWebApp/GroupTherapyWebAppFinal/Views/Home/Member_Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNZW1iZXJfUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jenni/Documents/GitHub/Group Therapy/GroupTherapyWebAppFinal/Views/Home/NewFamilyGroup.cshtml]
+[C:/Users/mariu/Source/Repos/FinalWebApp/GroupTherapyWebAppFinal/Views/Home/NewFamilyGroup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOZXdGYW1pbHlHcm91cC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jenni/Documents/GitHub/Group Therapy/GroupTherapyWebAppFinal/Views/Home/Pet_Profile.cshtml]
+[C:/Users/mariu/Source/Repos/FinalWebApp/GroupTherapyWebAppFinal/Views/Home/Pet_Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQZXRfUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jenni/Documents/GitHub/Group Therapy/GroupTherapyWebAppFinal/Views/Home/SignUp.cshtml]
+[C:/Users/mariu/Source/Repos/FinalWebApp/GroupTherapyWebAppFinal/Views/Home/SignUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Jenni/Documents/GitHub/Group Therapy/GroupTherapyWebAppFinal/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/mariu/Source/Repos/FinalWebApp/GroupTherapyWebAppFinal/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
