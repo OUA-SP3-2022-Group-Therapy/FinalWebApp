@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+// The structure for the Pets part of the database - Joshua Wagner
 namespace GroupTherapyWebAppFinal.Models
 {
     public class Pet

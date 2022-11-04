@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+// Used for navigation and commands. Home controller WIP - Joshua Wagner
 namespace GroupTherapyWebAppFinal.Controllers
 {
     public class HomeController : Controller

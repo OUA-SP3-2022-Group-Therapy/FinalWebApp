@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+// The structure for the users portion of the database - Joshua Wagner
 namespace GroupTherapyWebAppFinal.Models
 {
     public class UserModel

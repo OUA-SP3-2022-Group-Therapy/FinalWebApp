@@ -1,3 +1,4 @@
+//Used to start the app - Joshua Wagner
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 

@@ -11565,11 +11565,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
+      "projectUniqueName": "C:\\Users\\joshw\\OneDrive\\Documents\\Uni stuff\\Building IT Systems\\Final project\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
       "projectName": "GroupTherapyWebAppFinal",
-      "projectPath": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
+      "projectPath": "C:\\Users\\joshw\\OneDrive\\Documents\\Uni stuff\\Building IT Systems\\Final project\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
       "packagesPath": "C:\\Users\\joshw\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\obj\\",
+      "outputPath": "C:\\Users\\joshw\\OneDrive\\Documents\\Uni stuff\\Building IT Systems\\Final project\\FinalWebApp\\GroupTherapyWebAppFinal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\joshw\\AppData\\Roaming\\NuGet\\NuGet.Config",

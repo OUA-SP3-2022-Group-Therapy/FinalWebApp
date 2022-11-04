@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+// The structure for the Pet Trends part of the database - Joshua Wagner
 namespace GroupTherapyWebAppFinal.Models
 {
     public class Trends

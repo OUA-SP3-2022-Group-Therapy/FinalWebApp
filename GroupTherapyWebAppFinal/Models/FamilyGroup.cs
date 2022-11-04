@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+// The structure for the Family Groups of the database - Joshua Wagner
 namespace GroupTherapyWebAppFinal.Models
 {
     public class FamilyGroup

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+// The structure for the Pet Events part of the database - Joshua Wagner
 namespace GroupTherapyWebAppFinal.Models
 {
     public class Event
