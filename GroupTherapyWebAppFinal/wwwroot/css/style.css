@@ -64,9 +64,10 @@
 
     /* section colours */
     --pal_section_background: rgba(62, 56, 73, 0.144);
+
     /* chart colours */
-    --pal_chart_lines:  rgb(255, 255, 255);
-    --pal_chart_points:  rgb(14, 14, 65);
+    --pal_chart_lines: rgb(255, 255, 255);
+    --pal_chart_points: rgb(14, 14, 65);
     --pal_chart_grid: rgb(204, 198, 199);
 }
 
@@ -96,7 +97,7 @@ input[type=text] {
 .navigationBar {
     display: inline-flex;
     padding: 3px;
-    float: center;    
+    float: center;
 }
 
 .navigationBarEnd {
@@ -211,10 +212,10 @@ a:active {
     min-height: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    /* Handle on hover */
-    background: var(--scroll_bar_hover);
-}
+    ::-webkit-scrollbar-thumb:hover {
+        /* Handle on hover */
+        background: var(--scroll_bar_hover);
+    }
 
 /*Custom Div Classes.*/
 .mainBox {
@@ -238,14 +239,14 @@ a:active {
     width: 100%;
 }
 
-.sectionSubHorizontal{    
+.sectionSubHorizontal {
     display: inline-flex;
     width: 100%;
     height: auto;
     text-align: center;
     margin: auto;
-    padding:10px;
-    padding-bottom:15px;
+    padding: 10px;
+    padding-bottom: 15px;
 }
 
 .search-button img {
@@ -254,7 +255,7 @@ a:active {
     object-fit: cover;
 }
 
-.formSection{
+.formSection {
     display: inline-block;
     text-align: left;
     height: auto;
@@ -296,7 +297,7 @@ a:active {
     display: block;
     text-align: center;
     width: 80%;
-    padding:50px;
+    padding: 50px;
 }
 
 
@@ -330,10 +331,10 @@ a:active {
     overflow: hidden;
 }
 
-.upcomingEventsGridItem:hover{
-    border: 2px solid var(--pal_button_border_hover);
-    padding: 9px;
-   }
+    .upcomingEventsGridItem:hover {
+        border: 2px solid var(--pal_button_border_hover);
+        padding: 9px;
+    }
 
 
 .dashboardUsers {
@@ -353,29 +354,29 @@ a:active {
     margin: auto;
 }
 
-.dashboardUserImage[id=profileMain] {
-    background-image: url('https://api.lorem.space/image/face?w=150;h=150');
-}
+    .dashboardUserImage[id=profileMain] {
+        background-image: url('https://api.lorem.space/image/face?w=150;h=150');
+    }
 
-.dashboardUserImage[id=profileOne] {
-    background-image: url('https://api.lorem.space/image/face?w=150;h=150');
-}
+    .dashboardUserImage[id=profileOne] {
+        background-image: url('https://api.lorem.space/image/face?w=150;h=150');
+    }
 
-.dashboardUserImage[id=profileTwo] {
-    background-image: url('https://api.lorem.space/image/fashion?w=150;h=150');
-}
+    .dashboardUserImage[id=profileTwo] {
+        background-image: url('https://api.lorem.space/image/fashion?w=150;h=150');
+    }
 
-.dashboardUserImage[id=profileThree] {
-    background-image: url('https://api.lorem.space/image/car?w=150;h=150');
-}
+    .dashboardUserImage[id=profileThree] {
+        background-image: url('https://api.lorem.space/image/car?w=150;h=150');
+    }
 
-.dashboardUserImage[id=profileAnimalOne] {
-    background-image: url('https://place.dog/150/150');
-}
+    .dashboardUserImage[id=profileAnimalOne] {
+        background-image: url('https://place.dog/150/150');
+    }
 
-.dashboardUserImage[id=profileAnimalTwo] {
-    background-image: url('https://place.dog/190/150');
-}
+    .dashboardUserImage[id=profileAnimalTwo] {
+        background-image: url('https://place.dog/190/150');
+    }
 
 
 
@@ -392,10 +393,11 @@ a:active {
     border: 1px solid var(--pal_button_border);
     overflow: scroll;
 }
-.dashboardUsersPartition:hover{
-    border: 2px solid var(--pal_button_border_hover);
-    padding: 19px;
-   }
+
+    .dashboardUsersPartition:hover {
+        border: 2px solid var(--pal_button_border_hover);
+        padding: 19px;
+    }
 
 .calendarSection {
     display: inline-flex;
@@ -430,75 +432,75 @@ a:active {
     margin-right: 20px;
 }
 
-.overlaySignUpBlur{
+.overlaySignUpBlur {
     display: none;
-    background-color: rgba(10,10,10,0.6);    
+    background-color: rgba(10,10,10,0.6);
     position: absolute;
-    top:0px;
-    left:0px;
-    width:100%;
-    height:100%;      
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
     backdrop-filter: blur(5px);
 }
 
-.overlaySignUp{
+.overlaySignUp {
     position: absolute;
-    background-color:var(--pal_button_colour); 
-    width:20%;
-    height:35%;
-    top:33%;
-    bottom:33%;
-    right:40%;
-    left:40%;
-    z-index:1;
+    background-color: var(--pal_button_colour);
+    width: 20%;
+    height: 35%;
+    top: 33%;
+    bottom: 33%;
+    right: 40%;
+    left: 40%;
+    z-index: 1;
     border: 1px solid var(--pal_button_border);
-    border-radius: 20px;    
+    border-radius: 20px;
 }
 
 
-.overlaySectionForm{
+.overlaySectionForm {
     display: inline-block;
     height: auto;
-    width: 100%;    
+    width: 100%;
     text-align: center;
     align-items: center;
     justify-content: center;
 }
 
-.overlaySectionButtonLocation{
-    position:absolute; 
-    top:10px;
-    right:10px;
+.overlaySectionButtonLocation {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
-.familySection{
-    margin:auto;
-    width:100%;
+.familySection {
+    margin: auto;
+    width: 100%;
     text-align: center;
 }
 
-.familyGroup{
+.familyGroup {
     display: inline-block;
     margin: auto;
     width: auto;
     padding: 40px;
-    text-align: left;    
+    text-align: left;
 }
 
-.familyGroupInner{
-    margin:50px auto;
-    width:auto;
-    height:auto;
-    background-color:rgba(179, 41, 41, 0);
+.familyGroupInner {
+    margin: 50px auto;
+    width: auto;
+    height: auto;
+    background-color: rgba(179, 41, 41, 0);
     display: grid;
-    grid-template-columns:50% 20%;
+    grid-template-columns: 50% 20%;
     grid-row: auto auto;
     grid-column-gap: 0;
     grid-row-gap: 8%;
 }
 
 
-.familyUserGridItem{
+.familyUserGridItem {
     font-size: 30px;
     text-align: center;
     font-size: small;
@@ -514,12 +516,12 @@ a:active {
     overflow: scroll;
 }
 
-.familyUserGridItem:hover{
-    border: 2px solid var(--pal_button_border_hover);
-    padding: 19px;
-   }
+    .familyUserGridItem:hover {
+        border: 2px solid var(--pal_button_border_hover);
+        padding: 19px;
+    }
 
-.card{
+.card {
     display: block;
     background-color: var(--pal_button_colour);
     width: 160px;
@@ -533,80 +535,79 @@ a:active {
     overflow: scroll;
 }
 
-.card:hover{
-    border: 2px solid var(--pal_button_border_hover);
-    padding: 19px;
-   }
+    .card:hover {
+        border: 2px solid var(--pal_button_border_hover);
+        padding: 19px;
+    }
 
-.cardImageCircle{
-        background-color: var(--pal_image_placeholder_background);
-        width: 30px;
-        height: 30px;
-        border: 1px solid var(--pal_image_placeholder_border);
-        border-radius: 100%;
-        margin: auto;   
+.cardImageCircle {
+    background-color: var(--pal_image_placeholder_background);
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--pal_image_placeholder_border);
+    border-radius: 100%;
+    margin: auto;
 }
 
-.cardImageSection{
+.cardImageSection {
     display: inline-flex;
-    width:50%;
-    margin:auto;
+    width: 50%;
+    margin: auto;
     padding: 10px;
-    float:center;    
+    float: center;
 }
 
-.membersProfileMain{
+.membersProfileMain {
     display: inline-flex;
-    width:100%;   
-    height:auto;
+    width: 100%;
+    height: auto;
     text-align: center;
-    
+
 }
 
-.membersProfileSection{
+.membersProfileSection {
     display: inline-block;
     background-color: var(--pal_button_colour);
     border: 1px solid var(--pal_button_border);
     border-radius: 10px;
-    width:430px;
+    width: 430px;
     height: auto;
-    padding:10px;
-    margin-left:40px;
-    margin-right:40px;
-    
+    padding: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
-.membersProfileSectionImage{
+.membersProfileSectionImage {
     display: inline-flex;
     border-radius: 10px;
-    padding:0px;  
-    width: 350px; 
-    height:150px; 
-    overflow: hidden;    
-    margin: auto;  
+    padding: 0px;
+    width: 350px;
+    height: 150px;
+    overflow: hidden;
+    margin: auto;
 }
 
-.membersProfileSectionDetails{
-    display: block;    
+.membersProfileSectionDetails {
+    display: block;
     border: 1px solid var(--pal_button_border);
     border-radius: 10px;
-    width:auto;
+    width: auto;
     height: auto;
-    padding:20px;
-    margin-top: 10px;    
+    padding: 20px;
+    margin-top: 10px;
     text-align: center;
 }
 
-.membersProfileSectionDetails:hover{
- border: 2px solid var(--pal_button_border);
- padding:19px;
-}
+    .membersProfileSectionDetails:hover {
+        border: 2px solid var(--pal_button_border);
+        padding: 19px;
+    }
 
-.trendBox{
+.trendBox {
     display: block;
     background-color: var(--pal_button_colour);
     width: 100%;
-    height: 350px;    
+    height: 350px;
     margin-top: 10px;
     border-radius: 10px;
     border: 1px solid var(--pal_button_border);
@@ -615,30 +616,36 @@ a:active {
 
 
 /* Dividers */
-.lineDivider{
+.lineDivider {
     width: 100%;
     height: 1px;
-    margin: auto;   
+    margin: auto;
     margin-bottom: 10px;
     margin-top: -13px;
     background-color: var(--pal_navigation_divider);
 }
 
-.lineDividerSection{
+.lineDividerSection {
     width: 90%;
     height: 1px;
-    margin: auto;   
-    margin-bottom: 20px;    
+    margin: auto;
+    margin-bottom: 20px;
     background-color: var(--pal_navigation_divider);
 }
 
-.dividerSection{
+.dividerSection {
     width: 100%;
     height: 1px;
-    margin: auto;   
-    margin-bottom: 40px;    
-    ;
+    margin: auto;
+    margin-bottom: 40px;
 }
+
+.signUpForm {
+    display: inline-block;
+    width: 500px;
+    height: auto;
+}
+
 
 /*Custom Text Elements */
 .pageTitleTextWelcome {
@@ -731,8 +738,8 @@ a:active {
 
 .fancyText {
     text-align: center;
-    font-size: 1em;  
-    margin-top: -20px;      
+    font-size: 1em;
+    margin-top: -20px;
     background-image: linear-gradient(to right, var(--pal_fancy_text_one), var(--pal_fancy_text_two), var(--pal_fancy_text_three));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -760,16 +767,31 @@ a:active {
     color: var(--pal_title_text);
     font-size: 1em;
     text-align: left;
-    margin:0px;
+    margin: 0px;
 }
 
-.forgotText{
-    color:var(--pal_text_menu);
+.formTextSmaller {
+    color: var(--pal_title_text);
+    font-size: 0.9em;
+    text-align: left;
+    padding-top: 8px;
+    margin: 0px;
 }
 
-.forgotText:hover{
-    color:var(--pal_text_menu_active);
+.formTextLarge {
+    color: var(--pal_title_text);
+    font-size: 1.5em;
+    text-align: left;
+    margin: 0px;
 }
+
+.forgotText {
+    color: var(--pal_text_menu);
+}
+
+    .forgotText:hover {
+        color: var(--pal_text_menu_active);
+    }
 
 
 
@@ -791,20 +813,20 @@ a:active {
 
 }
 
-.buttonCustom:hover {
-    color: var(--pal_button_text_hover);
-    background-color: var(--pal_button_colour_hover);
-    font-size: 1em;
-    padding: 5px;
-    border-radius: 18px;
-    border: 1px solid var(--pal_button_border_hover);
-    text-align: center;
-    margin: auto;
-    overflow: hidden;
-    height: 15%;
-    margin-left: 10px;
-    margin-top: 10px;
-}
+    .buttonCustom:hover {
+        color: var(--pal_button_text_hover);
+        background-color: var(--pal_button_colour_hover);
+        font-size: 1em;
+        padding: 5px;
+        border-radius: 18px;
+        border: 1px solid var(--pal_button_border_hover);
+        text-align: center;
+        margin: auto;
+        overflow: hidden;
+        height: 15%;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
 
 .buttonCustomTitle {
     color: var(--pal_button_text);
@@ -816,22 +838,22 @@ a:active {
     margin-left: 10px;
 }
 
-.buttonCustomTitle:hover {
-    color: var(--pal_button_text_hover);
-    background-color: var(--pal_button_colour_hover);
-    border: 1px solid var(--pal_button_border_hover);
-}
+    .buttonCustomTitle:hover {
+        color: var(--pal_button_text_hover);
+        background-color: var(--pal_button_colour_hover);
+        border: 1px solid var(--pal_button_border_hover);
+    }
 
 i[id='calendarMarker'] {
     color: var(--pal_icon_arrows_colour);
 }
 
-i[id='iconFeature']{
-    color:var(--pal_icon_feature_colour);
+i[id='iconFeature'] {
+    color: var(--pal_icon_feature_colour);
     font-size: 2em;
 }
 
-input[type='text']{
+input[type='text'] {
     color: var(--pal_button_text);
     background-color: var(--pal_button_colour);
     font-size: 1em;
@@ -847,7 +869,7 @@ input[type='text']{
     margin-top: 10px;
 }
 
-input[type='password']{
+input[type='password'] {
     color: var(--pal_button_text);
     background-color: var(--pal_button_colour);
     font-size: 1em;
@@ -863,7 +885,7 @@ input[type='password']{
     margin-top: 10px;
 }
 
-input[type='number']{
+input[type='number'] {
     color: var(--pal_button_text);
     background-color: var(--pal_button_colour);
     font-size: 1em;
@@ -879,21 +901,39 @@ input[type='number']{
     margin-top: 10px;
 }
 
+input[type='email'] {
+    color: var(--pal_button_text);
+    background-color: var(--pal_button_colour);
+    font-size: 1em;
+    padding: 5px;
+    border-radius: 18px;
+    border: 1px solid var(--pal_button_border);
+    text-align: left;
+    margin: auto;
+    overflow: hidden;
+    height: 30px;
+    width: 300px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
 /* chart */
 .percentage:after {
     content: "";
     display: block;
     background-color: #3d9970;
-  }
-  .percentage-20:after {
-    width: 20%;
-  }
-  .percentage-30:after {
-    width: 30%;
-  }
+}
 
-  /* chart */
-  .css-chart {
+.percentage-20:after {
+    width: 20%;
+}
+
+.percentage-30:after {
+    width: 30%;
+}
+
+/* chart */
+.css-chart {
     border-bottom: 2px solid var(--pal_chart_grid);
     border-left: 2px solid var(--pal_chart_grid);
     display: inline-block;
@@ -902,16 +942,16 @@ input[type='number']{
     padding: 0;
     position: relative;
     width: var(--widget-size);
-  }
-  
-  .line-chart {
+}
+
+.line-chart {
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-  
-  .data-point {
-    background-color:var(--pal_chart_points);
+}
+
+.data-point {
+    background-color: var(--pal_chart_points);
     border: 1px solid var(--pal_button_border);
     border-radius: 1000%;
     bottom: calc(var(--y) - 4px);
@@ -920,9 +960,9 @@ input[type='number']{
     position: absolute;
     width: 12px;
     z-index: 1;
-  }
-  
-  .line-segment {
+}
+
+.line-segment {
     background-color: var(--pal_chart_lines);
     bottom: var(--y);
     height: 3px;
@@ -931,4 +971,4 @@ input[type='number']{
     transform: rotate(calc(var(--angle) * 1deg));
     transform-origin: left bottom;
     width: calc(var(--hypotenuse) * 1px);
-  }
+}

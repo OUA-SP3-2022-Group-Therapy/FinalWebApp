@@ -11560,19 +11560,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\joshw\\.nuget\\packages\\": {}
+    "C:\\Users\\Jenni\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
+      "projectUniqueName": "C:\\Users\\Jenni\\Documents\\GitHub\\Group Therapy\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
       "projectName": "GroupTherapyWebAppFinal",
-      "projectPath": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
-      "packagesPath": "C:\\Users\\joshw\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joshw\\OneDrive\\Documents\\GitHub\\FinalWebApp\\GroupTherapyWebAppFinal\\obj\\",
+      "projectPath": "C:\\Users\\Jenni\\Documents\\GitHub\\Group Therapy\\GroupTherapyWebAppFinal\\GroupTherapyWebAppFinal.csproj",
+      "packagesPath": "C:\\Users\\Jenni\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jenni\\Documents\\GitHub\\Group Therapy\\GroupTherapyWebAppFinal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\joshw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jenni\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
