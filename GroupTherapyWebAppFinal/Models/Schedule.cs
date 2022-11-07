@@ -17,14 +17,14 @@ namespace GroupTherapyWebAppFinal.Models
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EndDateTime { get; set; }
         [StringLength(10)]
-        public string? Type { get; set; }
+        public string? ScheduleType { get; set; }
         [StringLength(10)]
         public string? Frequency { get; set; }
-        public int? Dose { get; set; }
+        [StringLength(20)]
+        public string? Dose { get; set; }
         [StringLength(300)]
         public string? Description { get; set; }
         [Required]
-        [StringLength(12)]
         public int GroupID { get; set; }
 
         public Schedule()

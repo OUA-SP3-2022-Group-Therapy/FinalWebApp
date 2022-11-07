@@ -9,7 +9,7 @@ namespace GroupTherapyWebAppFinal.Models
         public int UserID { get; set; }
         [Required]
         public int GroupID { get; set; }
-        
+        public int IsAdmin { get; set; }
 
         public Membership()
         {
