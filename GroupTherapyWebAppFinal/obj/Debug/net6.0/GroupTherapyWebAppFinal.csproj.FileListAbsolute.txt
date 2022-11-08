@@ -612,3 +612,14 @@ C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\Fi
 C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\obj\Debug\net6.0\GroupTherapyWebAppFinal.csproj.CopyComplete
 C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\obj\Debug\net6.0\GroupTherapyWebAppFinal.genruntimeconfig.cache
 C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\obj\Debug\net6.0\ref\GroupTherapyWebAppFinal.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\joshw\OneDrive\Documents\Uni stuff\Building IT Systems\Final project\FinalWebApp\GroupTherapyWebAppFinal\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

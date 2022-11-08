@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 // The structure for the Pet Trends part of the database - Joshua Wagner
 namespace GroupTherapyWebAppFinal.Models
@@ -13,6 +14,8 @@ namespace GroupTherapyWebAppFinal.Models
         public DateTime Date { get; set; }
         public int? Height { get; set; }
         public int? Weight { get; set; }
+        [ForeignKey("PetID")]
+        public Pet Pet { get; set; }
 
         public Trends()
         { 

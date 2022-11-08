@@ -1,6 +1,12 @@
 //Used to start the app - Joshua Wagner
+using GroupTherapyWebAppFinal.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContext");
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContext")));
 
 builder.Services.AddControllersWithViews();
 
