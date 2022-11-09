@@ -40,7 +40,7 @@ namespace GroupTherapyWebAppFinal.Data
                 .HasKey(c => new { c.PetID, c.Date });
         }
 
-        //References the database - Joshua Wagner
+        //References and establishes connection to the database - Joshua Wagner
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlServer(@"Server=tcp:petpal-server.database.windows.net,1433;Initial Catalog=PetPalDatabase;Persist Security Info=False;User ID=wagnerj;Password=pet@pal1315;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
     }
