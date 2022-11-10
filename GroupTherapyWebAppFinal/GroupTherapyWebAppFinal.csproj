@@ -38,7 +38,6 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Areas\" />
 		<Folder Include="Migrations\" />
 	</ItemGroup>
 
@@ -315,6 +314,13 @@
 	  <None Include="Views\Home\Index.cshtml" />
 	  <None Include="Views\Home\Member_Profile.cshtml" />
 	  <None Include="Views\Home\Pet_Profile.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="Views\_ViewStart.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
 	</ItemGroup>
 
 </Project>

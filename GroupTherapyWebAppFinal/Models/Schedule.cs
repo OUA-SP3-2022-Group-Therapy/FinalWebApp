@@ -16,7 +16,7 @@ namespace GroupTherapyWebAppFinal.Models
         public DateTime StartDateTime { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime EndDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
         [StringLength(10)]
         public string? ScheduleType { get; set; }
         [StringLength(10)]
