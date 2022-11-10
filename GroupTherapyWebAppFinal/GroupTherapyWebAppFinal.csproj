@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>b4476198-957c-4a71-9458-ab9ed2c1c58a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,20 +25,19 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.10" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="6.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
-    <PackageReference Include="System.Data.SQLite" Version="1.0.116" />
   </ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Areas\" />
 		<Folder Include="Migrations\" />
 	</ItemGroup>
 
@@ -314,6 +314,13 @@
 	  <None Include="Views\Home\Index.cshtml" />
 	  <None Include="Views\Home\Member_Profile.cshtml" />
 	  <None Include="Views\Home\Pet_Profile.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="Views\_ViewStart.cshtml">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
 	</ItemGroup>
 
 </Project>

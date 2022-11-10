@@ -3,6 +3,7 @@ using System;
 using GroupTherapyWebAppFinal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -15,151 +16,178 @@ namespace GroupTherapyWebAppFinal.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "6.0.10")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Event", b =>
                 {
                     b.Property<int>("ScheduleID")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("EventName")
                         .HasMaxLength(30)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("CompletedBy")
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime>("EndDateTime")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EventStatus")
-                        .HasMaxLength(10)
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("StartDateTime")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("ScheduleID", "EventName");
 
-                    b.ToTable("Event");
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("GroupTherapyWebAppFinal.Models.FamilyGroup", b =>
                 {
-                    b.Property<int>("GroupID")
+                    b.Property<int>("FamilyGroupID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FamilyGroupID"), 1L, 1);
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FamilyName")
+                        .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("MemberStatus")
                         .HasMaxLength(10)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(10)");
 
-                    b.HasKey("GroupID");
+                    b.HasKey("FamilyGroupID");
 
-                    b.ToTable("FamilyGroup");
+                    b.ToTable("FamilyGroups");
                 });
 
             modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Membership", b =>
                 {
-                    b.Property<int>("UserID")
-                        .HasColumnType("INTEGER");
+                    b.Property<int>("UserModelID")
+                        .HasColumnType("int");
 
-                    b.Property<int>("GroupID")
-                        .HasColumnType("INTEGER");
+                    b.Property<int>("FamilyGroupID")
+                        .HasColumnType("int");
 
-                    b.HasKey("UserID", "GroupID");
+                    b.Property<int>("IsAdmin")
+                        .HasColumnType("int");
 
-                    b.ToTable("Membership");
+                    b.HasKey("UserModelID", "FamilyGroupID");
+
+                    b.HasIndex("FamilyGroupID");
+
+                    b.ToTable("Memberships");
                 });
 
             modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Pet", b =>
                 {
                     b.Property<int>("PetID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PetID"), 1L, 1);
 
                     b.Property<string>("Allergies")
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Breed")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("DOB")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("GroupID")
-                        .HasMaxLength(12)
-                        .HasColumnType("INTEGER");
+                    b.Property<int>("FamilyGroupID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Species")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("PetID");
 
-                    b.ToTable("Pet");
+                    b.HasIndex("FamilyGroupID");
+
+                    b.ToTable("Pets");
                 });
 
             modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Schedule", b =>
                 {
                     b.Property<int>("ScheduleID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScheduleID"), 1L, 1);
 
                     b.Property<string>("Description")
                         .HasMaxLength(300)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(300)");
 
-                    b.Property<int?>("Dose")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Dose")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("EndDateTime")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FamilyGroupID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Frequency")
                         .HasMaxLength(10)
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("GroupID")
-                        .HasMaxLength(12)
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("ScheduleName")
                         .HasMaxLength(30)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("ScheduleType")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("StartDateTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
-                        .HasMaxLength(10)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("ScheduleID");
 
-                    b.ToTable("Schedule");
+                    b.HasIndex("FamilyGroupID");
+
+                    b.ToTable("Schedules");
                 });
 
-            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Trends", b =>
+            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Trend", b =>
                 {
                     b.Property<int>("PetID")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("Height")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int?>("Weight")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("PetID", "Date");
 
@@ -168,37 +196,103 @@ namespace GroupTherapyWebAppFinal.Migrations
 
             modelBuilder.Entity("GroupTherapyWebAppFinal.Models.UserModel", b =>
                 {
-                    b.Property<int>("UserID")
+                    b.Property<int>("UserModelID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserModelID"), 1L, 1);
 
                     b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Gender")
                         .HasMaxLength(10)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("UserType")
                         .HasMaxLength(20)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("UserID");
+                    b.HasKey("UserModelID");
 
-                    b.ToTable("UserModel");
+                    b.ToTable("UserModels");
+                });
+
+            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Event", b =>
+                {
+                    b.HasOne("GroupTherapyWebAppFinal.Models.Schedule", "Schedule")
+                        .WithMany()
+                        .HasForeignKey("ScheduleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Schedule");
+                });
+
+            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Membership", b =>
+                {
+                    b.HasOne("GroupTherapyWebAppFinal.Models.FamilyGroup", "FamilyGroup")
+                        .WithMany()
+                        .HasForeignKey("FamilyGroupID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GroupTherapyWebAppFinal.Models.UserModel", "UserModel")
+                        .WithMany()
+                        .HasForeignKey("UserModelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FamilyGroup");
+
+                    b.Navigation("UserModel");
+                });
+
+            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Pet", b =>
+                {
+                    b.HasOne("GroupTherapyWebAppFinal.Models.FamilyGroup", "FamilyGroup")
+                        .WithMany()
+                        .HasForeignKey("FamilyGroupID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FamilyGroup");
+                });
+
+            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Schedule", b =>
+                {
+                    b.HasOne("GroupTherapyWebAppFinal.Models.FamilyGroup", "FamilyGroup")
+                        .WithMany()
+                        .HasForeignKey("FamilyGroupID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FamilyGroup");
+                });
+
+            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Trend", b =>
+                {
+                    b.HasOne("GroupTherapyWebAppFinal.Models.Pet", "Pet")
+                        .WithMany()
+                        .HasForeignKey("PetID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pet");
                 });
 #pragma warning restore 612, 618
         }
