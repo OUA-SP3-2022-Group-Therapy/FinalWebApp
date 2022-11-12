@@ -10,7 +10,7 @@ var connectionString = builder.Configuration.GetConnectionString("ApplicationDbC
 builder.Services.AddDbContext<GroupTherapyWebAppFinalContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContext")));
 
-builder.Services.AddDefaultIdentity<GroupTherapyWebAppFinalUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<GroupTherapyWebAppFinalUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<GroupTherapyWebAppFinalContext>();
 
 builder.Services.AddControllersWithViews();
