@@ -12,7 +12,7 @@ using System.Reflection.Metadata;
 // This is the context file used to difine all the models and structure of the database - Joshua Wagner
 
 namespace GroupTherapyWebAppFinal.Data
-{    
+{
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

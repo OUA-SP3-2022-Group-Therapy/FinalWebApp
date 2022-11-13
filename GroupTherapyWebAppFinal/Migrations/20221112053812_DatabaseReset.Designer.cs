@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupTherapyWebAppFinal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221109060639_initialsetup")]
-    partial class initialsetup
+    [Migration("20221112053812_DatabaseReset")]
+    partial class DatabaseReset
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -149,7 +149,7 @@ namespace GroupTherapyWebAppFinal.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<DateTime>("EndDateTime")
+                    b.Property<DateTime?>("EndDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("FamilyGroupID")
@@ -177,7 +177,7 @@ namespace GroupTherapyWebAppFinal.Migrations
                     b.ToTable("Schedules");
                 });
 
-            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Trends", b =>
+            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Trend", b =>
                 {
                     b.Property<int>("PetID")
                         .HasColumnType("int");
@@ -286,7 +286,7 @@ namespace GroupTherapyWebAppFinal.Migrations
                     b.Navigation("FamilyGroup");
                 });
 
-            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Trends", b =>
+            modelBuilder.Entity("GroupTherapyWebAppFinal.Models.Trend", b =>
                 {
                     b.HasOne("GroupTherapyWebAppFinal.Models.Pet", "Pet")
                         .WithMany()

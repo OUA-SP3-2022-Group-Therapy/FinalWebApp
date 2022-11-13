@@ -6,21 +6,15 @@
     ViewBag.Title = "Login";
 }
 
+@{
+    Layout = "_Layout";
+}
+
 <!--Developed by Ashton Nicholson 4/10/2022 -->
 <html>
 
 <head>
-    <meta name="description" content="index Petpal" />
-    <!--meta description-->
-    <meta name="keywords" content="" />
-    <!--meta keywords-->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PetPal | Welcome</title>
-    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
-    <!--css stylesheet-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="icon" href="" />    
+
 </head>
 
 <body>
@@ -42,7 +36,8 @@
                 <p class="pageLogoFancy">PetPal</p>
                 <div class="welcomeButton">
                     <button class= "buttonCustomTitle" onclick="showSignUp();">Log In</button>
-                    <a href="@Url.Action("Dashboard", "Home")" target ="_self"> <button class= "buttonCustomTitle" >Sign Up</button></a>
+                    <a href="@Url.Action("Dashboard", "Home")" target="_self"><button class="buttonCustomTitle">Sign Up</button></a>
+                    <a class="buttonCustomTitle" asp-area="" asp-controller="UserModels" asp-action="Create">Sign Up</a>
                 </div>
             </div>
             <!--Image/Slideshow area.-->

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GroupTherapyWebAppFinal.Migrations
 {
-    public partial class initialsetup : Migration
+    public partial class DatabaseReset : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,7 +74,7 @@ namespace GroupTherapyWebAppFinal.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ScheduleName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     StartDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ScheduleType = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Frequency = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Dose = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
