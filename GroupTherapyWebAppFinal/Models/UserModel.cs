@@ -10,6 +10,7 @@ namespace GroupTherapyWebAppFinal.Models
         public int UserModelID { get; set; }
         [Required]
         [StringLength(100, ErrorMessage = "Email cannot be longer than 100 characters.")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
         [StringLength(30, ErrorMessage = "Password cannot be longer than 30 characters.")]

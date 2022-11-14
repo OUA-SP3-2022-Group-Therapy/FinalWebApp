@@ -1,3 +1,4 @@
+@model UserModel
 @{
     ViewData["Title"] = "Login";
 }
@@ -10,7 +11,7 @@
     Layout = "_Layout";
 }
 
-<!--Developed by Ashton Nicholson 4/10/2022 -->
+<!--Developed by Group Therapy 4/10/2022 -->
 <html>
 
 <head>
@@ -36,8 +37,7 @@
                 <p class="pageLogoFancy">PetPal</p>
                 <div class="welcomeButton">
                     <button class= "buttonCustomTitle" onclick="showSignUp();">Log In</button>
-                    <a href="@Url.Action("Dashboard", "Home")" target="_self"><button class="buttonCustomTitle">Sign Up</button></a>
-                    <a class="buttonCustomTitle" asp-area="" asp-controller="UserModels" asp-action="Create">Sign Up</a>
+                    <a href="@Url.Action("Create", "UserModels")" target="_self"><button class="buttonCustomTitle">Sign Up</button></a>
                 </div>
             </div>
             <!--Image/Slideshow area.-->
@@ -64,36 +64,47 @@
             </div>
         </div>
 
-    <div class="overlaySignUpBlur" id="overlaySignUpBlur">
-        <div class="overlaySignUp">
-            <div class="overlaySectionForm">
-                <p class="featureText">Log in to PetPal</p>
-                <div class="overlaySectionButtonLocation">
-                    <button class= "buttonCustomTitle" onclick="showSignUp();">&nbsp;X&nbsp;</button>
-                </div>
-                    <!--Email input is here-->
-                <div class="formSection">
-                    <p class="formText">Email</p>                
-                    <input type="text" placeholder="Email Address" id="Email"></input>
-                    <br></br>                    
-                    <p class="formText">Password</p>                
-                    <input type="password" placeholder="Password" id="Password"></input>                    
-                </div>
-                    <!--Password input is here-->
-                <div class="overlaySectionForm">                    
-                    <p class="forgotText" title="Reset Your Password.">Forgot Password</p>            
-                </div>
-                <div class="overlaySectionForm">
-                    <a href="@Url.Action("Dashboard", "Home")" target ="_self"><button class= "buttonCustomTitle" onclick="showSignUp()">Log in</button></a>
-                </div>
-                <br></br>
-            </div>
+        <div class="overlaySignUpBlur" id="overlaySignUpBlur">
+            <div class="overlaySignUp">
+                <!--Sign In form starts here. Joshua Wagner-->
+                <form id="account" method="post">                    
+                    <!--Formatting lines are left as is but related form stuff replaced some content. Joshua Wagner-->
+                    <p class="featureText">Log in to PetPal</p>
+                    <div class="overlaySectionButtonLocation">
+                        <button class= "buttonCustomTitle" onclick="showSignUp();">&nbsp;X&nbsp;</button>
+                    </div>
 
-        </div> 
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <!--Section for Email input. Joshua Wagner-->
+                    <div class="formSection">
+                        <p class="formText">Email</p>
+                        <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
+                        <label asp-for="Email" class="form-label"></label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <br></br>
+                    <!--Section for Password input. Joshua Wagner-->
+                    <div class="formSection">
+                        <p class="formText">Password</p>
+                        <input asp-for="Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                        <label asp-for="Password" class="form-label"></label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <button id="login-submit" type="submit" class="buttonCustomTitle">Log in</button>
+                    </div>                    
+                </form>
+            </div> 
+        </div>
     </div>
           
     <script src="~/js/signUpProtoytype.js"></script>        
 </body>
 
 </html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 
