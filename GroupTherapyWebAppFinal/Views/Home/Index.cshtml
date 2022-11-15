@@ -1,10 +1,10 @@
 @model UserModel
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Index";
 }
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Index";
 }
 
 @{
@@ -90,7 +90,7 @@
                         <label asp-for="Password" class="form-label"></label>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-
+                    
                     <div>
                         <button id="login-submit" type="submit" class="buttonCustomTitle">Log in</button>
                     </div>                    

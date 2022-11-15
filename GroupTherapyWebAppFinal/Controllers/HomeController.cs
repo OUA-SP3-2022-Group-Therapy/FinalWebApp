@@ -10,17 +10,44 @@ namespace GroupTherapyWebAppFinal.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly UserManager<IdentityUser> UserManager;
 
-        [HttpGet]
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> UserManager)
         {
             _logger = logger;
+            this.UserManager = UserManager;
+        }
+
+        public partial interface IServiceProviderIsService
+        {
+            bool IsService(Type serviceType);
         }
 
         [HttpGet]
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(UserModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByEmailAsync(model.Email);
+                var result = await UserManager.CheckPasswordAsync(user, model.Password);
+
+                if (result)
+                {
+                    return RedirectToAction("Dashboard", "Home");
+                }
+
+                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+            }
+
+            return View(model);
         }
 
         [Authorize]
