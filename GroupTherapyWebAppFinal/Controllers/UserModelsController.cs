@@ -20,9 +20,9 @@ namespace GroupTherapyWebAppFinal.Controllers
         }
 
         // GET: UserModels
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-              return View("~/Views/Home/Index.cshtml");
+            return View("~/Views/Home/Index.cshtml");
         }
 
         // GET: UserModels/Details/5

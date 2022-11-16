@@ -1,5 +1,6 @@
 ﻿using GroupTherapyWebAppFinal.Data;
 using GroupTherapyWebAppFinal.Models;
+using GroupTherapyWebAppFinal.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +11,15 @@ namespace GroupTherapyWebAppFinal.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly UserManager<IdentityUser> UserManager;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<IdentityUser> UserManager)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            this.UserManager = UserManager;
+        }
+
+        public ActionResult Error()
+        {
+            return Content("Email and/or password are invalid");
         }
 
         public partial interface IServiceProviderIsService
@@ -32,22 +36,19 @@ namespace GroupTherapyWebAppFinal.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(UserModel model)
+        public IActionResult ProcessLogin(UserModel usermodel)
         {
-            if (ModelState.IsValid)
+            SecurityService securityService = new SecurityService();
+
+            if (securityService.IsValid(usermodel))
             {
-                var user = await UserManager.FindByEmailAsync(model.Email);
-                var result = await UserManager.CheckPasswordAsync(user, model.Password);
-
-                if (result)
-                {
-                    return RedirectToAction("Dashboard", "Home");
-                }
-
-                ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+                return View("Dashboard", "Home");
             }
-
-            return View(model);
+            else
+            {
+                return Error();
+            }
+            
         }
 
         [Authorize]
