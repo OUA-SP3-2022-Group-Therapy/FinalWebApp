@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-// Used for navigation and commands. Home controller WIP - Joshua Wagner
+// Used for navigation and commands - Joshua Wagner
 namespace GroupTherapyWebAppFinal.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+
+        public int CurrentUserID { get; set; }
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -33,6 +35,7 @@ namespace GroupTherapyWebAppFinal.Controllers
             return View();
         }
 
+        //Verifys the user's identity with the input fields.
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -51,28 +54,37 @@ namespace GroupTherapyWebAppFinal.Controllers
             
         }
 
-        [Authorize]
+        //Fetches user details (WIP) - Joshua Wagner
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult GetUserDetails(int UserID)
+        {
+            UsersFullDAO usersFull = new UsersFullDAO();
+
+            UserModel UserDetails = usersFull.FetchOne(UserID);
+
+            return View("Member_Profile", UserDetails);
+
+        }
+
         [HttpGet]
         public IActionResult Dashboard()
         {
             return View();
         }
 
-        [Authorize]
         [HttpGet]
         public IActionResult Family_Group()
         {
             return View();
         }
 
-        [Authorize]
         [HttpGet]
         public IActionResult Member_Profile()
         {
             return View();
         }
         
-        [Authorize]
         [HttpGet]
         public IActionResult Pet_Profile()
         {

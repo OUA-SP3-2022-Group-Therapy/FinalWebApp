@@ -8,6 +8,7 @@ namespace GroupTherapyWebAppFinal.Services
         List<UserModel> knownUsers = new List<UserModel>();
         UsersDAO usersDAO = new UsersDAO();
 
+        //Used for adding static values for testing - Joshua Wagner
         public SecurityService() 
         {
 
