@@ -8,11 +8,12 @@ using GroupTherapyWebAppFinal.Data;
 using System.Security.Policy;
 using System.Runtime.ConstrainedExecution;
 using System.Reflection.Metadata;
+using Microsoft.AspNetCore.Identity;
 
 // This is the context file used to difine all the models and structure of the database - Joshua Wagner
 
 namespace GroupTherapyWebAppFinal.Data
-{    
+{
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

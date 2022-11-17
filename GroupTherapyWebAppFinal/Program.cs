@@ -2,19 +2,20 @@
 using GroupTherapyWebAppFinal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
-using GroupTherapyWebAppFinal.Areas.Identity.Data;
+using GroupTherapyWebAppFinal.Models;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContext");
 
-builder.Services.AddDbContext<GroupTherapyWebAppFinalContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationDbContext")));
-
-builder.Services.AddDefaultIdentity<GroupTherapyWebAppFinalUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<GroupTherapyWebAppFinalContext>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddMvc();
+builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var app = builder.Build();
 

@@ -16,12 +16,15 @@
         <!--Add Header/Topbar content here-->
     </header>
 
-    <div>
-        @RenderBody()
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
 
     <footer>
         <!--Add Footer/Bottombar content here-->
     </footer>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
