@@ -1,3 +1,5 @@
+@model IEnumerable<GroupTherapyWebAppFinal.Models.UserModel>
+
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -117,8 +119,26 @@
             <p class="pageTitleText"> Members</p>
             <!--Dashboard Users-->
             <div class="dashboardUsers">
+                    
+                @foreach (var item in Model)
+                {
+                    <div class="dashboardUsersPartition">
+                        <a href="@Url.Action("Member_Profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileOne"></div></a>
+                        <p class="textMemberDashboardName" id="member_Name_One">@Html.DisplayFor(modelItem => item.Name)</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_One">@Html.DisplayFor(modelItem => item.Gender)</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_Two">@Html.DisplayFor(modelItem => item.UserType)</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_Three">@Html.DisplayFor(modelItem => item.DateCreated)</p>
+                    </div>
+                }
 
-                <div class="dashboardUsersPartition">
+                
+                
+                
+                
+                
+                
+                
+                <!--<div class="dashboardUsersPartition">
                         <a href="@Url.Action("Member_Profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileOne"></div></a>
                     <p class="textMemberDashboardName" id="member_Name_One">Laurie Harper</p>
                     <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes Number 1/3</p>                     
@@ -136,8 +156,8 @@
                 <div class="dashboardUsersPartition">
                         <a href="@Url.Action("Member_Profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileThree"></div></a>
                     <p class="textMemberDashboardName" id="member_Name_Three">Stephanie Miranda</p>                    
-                    <p class="textMemberDashboard" id="memberThree_Attribute_One">Attributes Number 1/1</p>  
-                </div>   
+                    <p class="textMemberDashboard" id="memberThree_Attribute_One">Attributes Number 1/1</p>
+                    </div>   -->
 
             </div>
         </div>

@@ -1,3 +1,4 @@
+@using GroupTherapyWebAppFinal.Models
 @{
     ViewData["Title"] = "Member_Profile";
 }
@@ -6,7 +7,7 @@
     ViewBag.Title = "Member_Profile";
 }
 
-<!--Developed by Ashton Nicholson 4/10/2022 -->
+<!--Developed by Group Therapy 4/10/2022 -->
 <html>
 
 <head>
@@ -86,8 +87,10 @@
 
             <div class="membersProfileSectionDetails">
               <p class="textEvents" style="font-size:x-large">Personal Details&nbsp;&nbsp;</p>
-              <p class="textEvents">Laurie (Lor)&nbsp;&nbsp;</p>
-              <p class="textEvents">Harper&nbsp;&nbsp;</p>              
+                    <p>@ViewData["Test"]</p>
+                    
+             <!--<p class="textEvents">Laurie (Lor)&nbsp;&nbsp;</p>
+              <p class="textEvents">Harper&nbsp;&nbsp;</p>        -->      
             </div>
 
             <div class="membersProfileSectionDetails">

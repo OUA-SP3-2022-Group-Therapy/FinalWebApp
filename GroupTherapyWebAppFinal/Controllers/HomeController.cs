@@ -12,7 +12,7 @@ namespace GroupTherapyWebAppFinal.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public int CurrentUserID { get; set; }
+        public static int CurrentUserID;
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -41,11 +41,19 @@ namespace GroupTherapyWebAppFinal.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ProcessLogin(UserModel usermodel)
         {
-            SecurityService securityService = new SecurityService();
-
-            if (securityService.IsValid(usermodel))
+            UsersDAO usersDAO = new UsersDAO();
+            bool success = usersDAO.FindUserByEmailAndPassword(usermodel);
+            
+            if (success == true)
             {
-                return View("Dashboard", "Home");
+                UserModel user = usersDAO.FetchID(usermodel);
+                //int ID = user.UserModelID;
+                //ISession["UserID"] = ID;
+                _logger.LogInformation("User logged in.");
+
+                //return Content(user.UserModelID.ToString()); ---> Used for testing ID value. Ignore this.
+
+                return RedirectToAction("Dashboard", "Home", new { UserID = user.UserModelID });
             }
             else
             {
@@ -59,18 +67,27 @@ namespace GroupTherapyWebAppFinal.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult GetUserDetails(int UserID)
         {
-            UsersFullDAO usersFull = new UsersFullDAO();
+            UsersDAO usersFull = new UsersDAO();
 
             UserModel UserDetails = usersFull.FetchOne(UserID);
 
-            return View("Member_Profile", UserDetails);
+            ViewData["Member"] = UserDetails;
 
+            //return View("Member_Profile", "Home");
+            return Content(UserID.ToString());
         }
 
         [HttpGet]
-        public IActionResult Dashboard()
+        public IActionResult Dashboard(int UserID)
         {
-            return View();
+            //return Content(UserID.ToString()); ---> Used for testing ID value.Ignore this.
+            DashboardDAO dashboard = new DashboardDAO();
+            Membership Fam = dashboard.FetchFamID(UserID);
+            int FamID = Fam.FamilyGroupID;
+            List<UserModel> Members = new List<UserModel>();
+            Members = dashboard.FetchAllFam(FamID);
+            //ViewData["Members"] = Members;
+            return View(Members);
         }
 
         [HttpGet]
@@ -81,7 +98,7 @@ namespace GroupTherapyWebAppFinal.Controllers
 
         [HttpGet]
         public IActionResult Member_Profile()
-        {
+        {            
             return View();
         }
         
