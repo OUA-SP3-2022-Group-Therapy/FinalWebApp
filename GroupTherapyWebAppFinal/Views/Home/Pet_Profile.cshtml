@@ -1,9 +1,15 @@
+@model GroupTherapyWebAppFinal.Models.Pet
 @{
     ViewData["Title"] = "Pet_Profile";
 }
 
 @{
     ViewBag.Title = "Pet_Profile";
+}
+
+@{
+    var Family = ViewData["Family"] as List<FamilyGroup>;
+    var Sibling = ViewData["Siblings"] as List<Pet>;
 }
 
 <!--Developed by Ashton Nicholson 4/10/2022 -->
@@ -76,30 +82,45 @@
             Harper Family - Rex Harper Profile
          </p>
          <br>
-         <!--members profile information-->
+         <!--Pet profile information-->
          <div class="membersProfileMain">
           <div class="membersProfileSection">
-            <div class="membersProfileSectionImage">
-              <p class="textEvents" style="font-size:X-large">Rex Harper&nbsp;&nbsp;</p>              
-              <div class="dashboardUserImage" id="profileAnimalOne"></div>                     
-            </div>
+              <!--Name-->
+              <div class="membersProfileSectionImage">
+                  <p class="textEvents" style="font-size:X-large">@Html.DisplayFor(Model.Name)&nbsp;&nbsp;</p>
+                  <div class="dashboardUserImage" id="profileAnimalOne"></div>
+              </div>
 
-            <div class="membersProfileSectionDetails">
-              <p class="textEvents" style="font-size:x-large">Personal Details&nbsp;&nbsp;</p>
-              <p class="textEvents">Rexamis (Rex)&nbsp;&nbsp;</p>
-              <p class="textEvents">Harper&nbsp;&nbsp;</p>              
-            </div>
+              <!--Personal details-->
+              <div class="membersProfileSectionDetails">
+                  <p class="textEvents" style="font-size:x-large">Personal Details&nbsp;&nbsp;</p>
+                  <p class="textEvents">Species: @Html.DisplayFor(Model.Species)&nbsp;&nbsp;</p>
+                  <p class="textEvents">Breed: @Html.DisplayFor(Model.Breed)&nbsp;&nbsp;</p>
+                  <p class="textEvents">DOB: @Html.DisplayFor(Model.DOB)&nbsp;&nbsp;</p>
+              </div>
+              
+              <!--Family group-->
+              <div class="membersProfileSectionDetails">
+                  <p class="textEvents" style="font-size:x-large">Family&nbsp;&nbsp;</p> 
+                  <Family>
+                      @foreach(var item in Family)
+                      {
+                          <p class="textEvents">@item.FamilyName</p>
+                      }
+                  </Family>
+              </div>
 
-            <div class="membersProfileSectionDetails">
-              <p class="textEvents" style="font-size:x-large">Family&nbsp;&nbsp;</p>              
-              <p class="textEvents">1. Harper&nbsp;&nbsp;</p>                            
-            </div>
-
-            <div class="membersProfileSectionDetails">
-              <p class="textEvents" style="font-size:x-large">Siblings&nbsp;&nbsp;</p>              
-              <p class="textEvents">1. Bandit Harper&nbsp;&nbsp;</p>                            
-            </div>
-            
+              <!--Siblings-->
+              <div class="membersProfileSectionDetails">
+                  <p class="textEvents" style="font-size:x-large">Sibling&nbsp;&nbsp;</p>
+                  <Sibling>
+                      @foreach (var item in Sibling)
+                      {
+                          <p class="textEvents">@item.Name</p>
+                      }
+                  </Sibling>
+              </div>
+                          
           </div>
 
           <div class="membersProfileSection">

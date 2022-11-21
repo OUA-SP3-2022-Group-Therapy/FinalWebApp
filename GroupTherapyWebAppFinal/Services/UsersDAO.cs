@@ -83,33 +83,31 @@ namespace GroupTherapyWebAppFinal.Services
         public UserModel FetchOne(int UserID)
         {
             //Create the query - Joshua Wagner
-            string sqlStatement = "SELECT * FROM dbo.UserModels WHERE UserID = @UserID";
+            string sqlStatement = "SELECT * FROM dbo.UserModels WHERE UserModelID = @UserModelID";
 
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 //Create and execute command - Joshua Wagner
                 SqlCommand command = new SqlCommand(sqlStatement, sqlConnection);
-
-                command.Parameters.Add("@UserID", System.Data.SqlDbType.Int).Value = UserID;
+                command.Parameters.Add("@UserModelID", System.Data.SqlDbType.Int).Value = UserID;
 
                 UserModel userdetails = new UserModel();
+
                 try
                 {
                     sqlConnection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            userdetails.UserModelID = reader.GetInt32(0);
-                            userdetails.Email = reader.GetString(1);
-                            userdetails.Password = reader.GetString(2);
-                            userdetails.Name = reader.GetString(3);
-                            userdetails.UserType = reader.GetString(4);
-                            userdetails.Gender = reader.GetString(5);
-                            userdetails.DateCreated = reader.GetDateTime(6);
-                        }
+                    if (reader.Read())
+                    {                        
+                        userdetails.UserModelID = reader.GetInt32(0);
+                        userdetails.Email = reader.GetString(1);
+                        userdetails.Password = reader.GetString(2);
+                        userdetails.Name = reader.GetString(3);
+                        userdetails.UserType = reader.GetString(4);
+                        userdetails.Gender = reader.GetString(5);
+                        userdetails.DateCreated = reader.GetDateTime(6);
+                        
                     }
                 }
                 catch (Exception e)
