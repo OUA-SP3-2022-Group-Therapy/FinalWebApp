@@ -9,7 +9,7 @@ namespace GroupTherapyWebAppFinal.Services
     {
         //Establishes connection to the database - Joshua Wagner
         string connectionString = @"Server=tcp:petpal-server.database.windows.net,1433;Initial Catalog=PetPalDatabase;Persist Security Info=False;User ID=wagnerj;Password=pet@pal1315;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-        
+
         public List<UserModel> FetchAllFam(int FamilyID)
         {
             List<UserModel> returnList = new List<UserModel>();
@@ -17,14 +17,14 @@ namespace GroupTherapyWebAppFinal.Services
             string sqlQuery = "SELECT * FROM dbo.UserModels INNER JOIN dbo.Memberships ON dbo.UserModels.UsermodelID = dbo.Memberships.UsermodelID WHERE FamilyGroupID=@FamilyGroupID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
-            {                
+            {
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
 
                 command.Parameters.Add("@FamilyGroupID", System.Data.SqlDbType.Int).Value = FamilyID;
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                
+
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -83,27 +83,28 @@ namespace GroupTherapyWebAppFinal.Services
             return returnList;
         }
 
-        public Membership FetchFamID(int UserID)
+        public List<Membership> FetchFamID(int UserID)
         {
             string sqlStatement = "SELECT * FROM dbo.Memberships WHERE UserModelID = @UserModelID";
+            List<Membership> returnList = new List<Membership>();
 
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(sqlStatement, sqlConnection);
                 command.Parameters.Add("@UserModelID", System.Data.SqlDbType.Int).Value = UserID;
-
-                Membership member = new Membership();
-
+                
                 try
                 {
                     sqlConnection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
-                    if (reader.Read())
+                    while (reader.Read())
                     {
+                        Membership member = new Membership();
                         member.UserModelID = reader.GetInt32(0);
                         member.FamilyGroupID = reader.GetInt32(1);
                         member.IsAdmin = reader.GetInt32(2);
+                        returnList.Add(member);
                     }
                 }
                 catch (Exception e)
@@ -111,7 +112,7 @@ namespace GroupTherapyWebAppFinal.Services
                     Console.WriteLine(e.Message);
                 }
 
-                return member;
+                return returnList;
             }
         }
 
@@ -168,15 +169,15 @@ namespace GroupTherapyWebAppFinal.Services
 
                     if (reader.Read())
                     {
-                        Pet Pet = new Pet();
-                        Pet.PetID = reader.GetInt32(0);
-                        Pet.Name = reader.GetString(1);
-                        Pet.Species = reader.GetString(2);
-                        Pet.Breed = reader.GetString(3);
-                        Pet.DOB = reader.GetDateTime(4);
-                        Pet.Allergies = reader.GetString(5);
-                        Pet.FamilyGroupID = reader.GetInt32(6);
-                        returnList.Add(Pet);
+                        Pet pets = new Pet();
+                        pets.PetID = reader.GetInt32(0);
+                        pets.Name = reader.GetString(1);
+                        pets.Species = reader.GetString(2);
+                        pets.Breed = reader.GetString(3);
+                        pets.DOB = reader.GetDateTime(4);
+                        pets.Allergies = reader.GetString(5);
+                        pets.FamilyGroupID = reader.GetInt32(6);
+                        returnList.Add(pets);
                     }
                 }
                 catch (Exception e)
@@ -294,6 +295,38 @@ namespace GroupTherapyWebAppFinal.Services
             }
 
             return returnList;
+        }
+
+        public List<Trend> FetchTrends(int PetID)
+        {
+            List<Trend> returnList = new List<Trend>();
+
+            string sqlQuery = "SELECT * FROM dbo.Trends WHERE PetID = @PetID GROUP BY Date";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.Parameters.Add("@PetID", System.Data.SqlDbType.Int).Value = PetID;
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Trend trend = new Trend();
+                        trend.PetID = reader.GetInt32(0);
+                        trend.Date = reader.GetDateTime(1);
+                        trend.Height = reader.GetInt32(2);
+                        trend.Weight = reader.GetInt32(3);
+                        returnList.Add(trend);
+                    }
+                }
+            }
+
+            return returnList;
+
         }
     }
 }

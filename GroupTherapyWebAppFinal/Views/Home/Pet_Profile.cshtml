@@ -1,4 +1,4 @@
-@model GroupTherapyWebAppFinal.Models.Pet
+@model GroupTherapyWebAppFinal.Models.UserModel
 @{
     ViewData["Title"] = "Pet_Profile";
 }
@@ -8,32 +8,25 @@
 }
 
 @{
-    var Family = ViewData["Family"] as List<FamilyGroup>;
-    var Sibling = ViewData["Siblings"] as List<Pet>;
+    Layout = "_Layout";
 }
 
-<!--Developed by Ashton Nicholson 4/10/2022 -->
+@{
+    var Pet = ViewData["Pet"] as Pet;
+    var Family = ViewData["Family"] as List<FamilyGroup>;
+    var Sibling = ViewData["Siblings"] as List<Pet>;
+    var Trends = ViewData["Trends"] as List<Trend>;
+}
+
+<!--Developed by Group Therapy 4/10/2022 -->
 <html>
 
 <head>
-    <meta name="description" content="" />
-    <!--meta description-->
-    <meta name="keywords" content="" />
-    <!--meta keywords-->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | Pet Profile</title>
-    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
-    <!--css stylesheet-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="icon" href="" />
-    <!--Fav Icon-->
-
 </head>
 
 <body>
     <div class="mainBox">
-
         <!-- Add in the Main Navigation Menu -->
         <div class="navigationBar">
             <!-- Options for Icon based LOGO or Image based LOGO *******************-->
@@ -54,7 +47,7 @@
             -->
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Dashboard", "Home")" target="_self">
+                    <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@Model.UserModelID">
                         <i class="fa fa-user"
               aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
@@ -85,18 +78,18 @@
          <!--Pet profile information-->
          <div class="membersProfileMain">
           <div class="membersProfileSection">
-              <!--Name-->
+              <!--Name WIP-->
               <div class="membersProfileSectionImage">
-                  <p class="textEvents" style="font-size:X-large">@Html.DisplayFor(Model.Name)&nbsp;&nbsp;</p>
+                  <p class="textEvents" style="font-size:X-large">@Pet.Name&nbsp;&nbsp;</p>
                   <div class="dashboardUserImage" id="profileAnimalOne"></div>
               </div>
 
-              <!--Personal details-->
+              <!--Personal details WIP-->
               <div class="membersProfileSectionDetails">
                   <p class="textEvents" style="font-size:x-large">Personal Details&nbsp;&nbsp;</p>
-                  <p class="textEvents">Species: @Html.DisplayFor(Model.Species)&nbsp;&nbsp;</p>
-                  <p class="textEvents">Breed: @Html.DisplayFor(Model.Breed)&nbsp;&nbsp;</p>
-                  <p class="textEvents">DOB: @Html.DisplayFor(Model.DOB)&nbsp;&nbsp;</p>
+                  <p class="textEvents">Species: @Pet.Species&nbsp;&nbsp;</p>
+                  <p class="textEvents">Breed: @Pet.Breed&nbsp;&nbsp;</p>
+                  <p class="textEvents">DOB: @Pet.DOB&nbsp;&nbsp;</p>
               </div>
               
               <!--Family group-->
@@ -129,8 +122,28 @@
             <button class="buttonCustomTitle">&nbsp;Weight&nbsp;</button>
             <button class="buttonCustomTitle">&nbsp;Height&nbsp;</button>
             <div class= "trendBox"> 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Height
+                            </th>
+                            <th>
+                                Weight
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @Html.Raw(ViewData["Trends"])
+                    </tbody>
+                </table>
+                
+                <!--dummy figure chart - Used as a placeholder
 
-              <!--dummy figure chart-->
+
           <figure class="css-chart" style="--widget-size: 200px;">
               <ul class="line-chart">
                 <li style="--x: 40px; --y: 83.3333px;">
@@ -154,9 +167,7 @@
                   <div class="line-segment" style="--hypotenuse: 0; --angle:0;"></div>
                 </li>    
               </ul>
-            </figure>
-
-           
+                      </figure>-->           
 
             </div>           
             <br> 
@@ -199,6 +210,7 @@
         </div>
     </div>
     <script src="~/js/lineChart.js"></script>
+    </div>
 </body>
 
 </html>

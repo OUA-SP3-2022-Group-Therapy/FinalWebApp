@@ -1,4 +1,4 @@
-@model IEnumerable<GroupTherapyWebAppFinal.Models.UserModel>
+@model GroupTherapyWebAppFinal.Models.UserModel
 @{
     ViewData["Title"] = "Member_Profile";
 }
@@ -8,6 +8,11 @@
 }
 
 @{
+    Layout = "_Layout";
+}
+
+@{
+    var ViewUser = ViewData["ViewUser"] as List<UserModel>;
     var Family = ViewData["Family"] as List<FamilyGroup>;
     var Pet = ViewData["Pet"] as List<Pet>;
 }
@@ -16,19 +21,7 @@
 <html>
 
 <head>
-    <meta name="description" content="" />
-    <!--meta description-->
-    <meta name="keywords" content="" />
-    <!--meta keywords-->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | My Profile</title>
-    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
-    <!--css stylesheet-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="icon" href="" />
-    <!--Fav Icon-->
-
 </head>
 
 <body>
@@ -54,12 +47,12 @@
             -->
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Dashboard", "Home")" target="_self">
+                    <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@Model.UserModelID">
                         <i class="fa fa-user"
               aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Family_Group", "Home")" 
+                    <a href="" 
                         target="_self"><i class="fa fa-users"
               aria-hidden="true" title="Family Groups"></i></a></span></p>
             <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
@@ -86,41 +79,38 @@
          <div class="membersProfileMain">
           <div class="membersProfileSection">
             <div class="membersProfileSectionImage">
-              <p class="textEvents" style="font-size:X-large">@Html.DisplayFor(modelItem => Model.ElementAt(0).Name)&nbsp;&nbsp;</p>
+              <p class="textEvents" style="font-size:X-large">@Html.DisplayFor(modelItem => Model.Name)&nbsp;&nbsp;</p>
               <div class="dashboardUserImage" id="profileOne"></div>                        
             </div>
 
             <!--Personal profile information-->
             <div class="membersProfileSectionDetails">  
-                <p class="textEvents" style="font-size:x-large">Name:@Html.DisplayFor(modelItem => Model.ElementAt(0).Name)&nbsp;&nbsp;</p>
-                <p class="textEvents">Age group:@Html.DisplayFor(modelItem => Model.ElementAt(0).UserType)</p>
-                <p class="textEvents">Gender:@Html.DisplayFor(modelItem => Model.ElementAt(0).Gender)</p>
-                <p class="textEvents">Date Created:@Html.DisplayFor(modelItem => Model.ElementAt(0).DateCreated)</p>
+                <p class="textEvents" style="font-size:x-large">Name:@Html.DisplayFor(modelItem => Model.Name)&nbsp;&nbsp;</p>
+                <p class="textEvents">Age group:@Html.DisplayFor(modelItem => Model.UserType)</p>
+                <p class="textEvents">Gender:@Html.DisplayFor(modelItem => Model.Gender)</p>
+                <p class="textEvents">Date Created:@Html.DisplayFor(modelItem => Model.DateCreated)</p>
             </div>
 
                 <!--Family infomation-->
             <div class="membersProfileSectionDetails">
               <p class="textEvents" style="font-size:x-large">Family&nbsp;&nbsp;</p>
-              <Family>
-                  @foreach(var item in Family)
-                  {
-                      <p class="textEvents">@item.FamilyName</p>
-                      <p class="textEvents">Created: @item.DateCreated</p>
-                  }                        
-              </Family>
+              @foreach(var item in Family)
+              {
+                  <p class="textEvents">@item.FamilyName</p>
+                  <p class="textEvents">Created: @item.DateCreated</p>
+              }                        
+              
                
             </div>
-
-                <a href="@Url.Action("Pet_Profile", "Home")" target="_self">
-                    <div class="membersProfileSectionDetails">
-              <p class="textEvents" style="font-size:x-large">Pets&nbsp;&nbsp;</p>              
-              <Pet>
-                  @foreach(var item in Pet)
-                  {
-                     <p class="textEvents">@item.Name</p>     
-                  }
-              </Pet>
-            </div></a>
+                        
+            <div class="membersProfileSectionDetails">
+                <p class="textEvents" style="font-size:x-large">Pets&nbsp;&nbsp;</p>
+                @foreach(var item in Pet)
+                {
+                   <p class="textEvents">@item.Name</p>     
+                }
+             
+            </div>
             
           </div>
 
@@ -131,7 +121,7 @@
                   @foreach (var item in Family)
                   {
                       <div class="familyUserGridItem">
-                        <a asp-controller="Home" asp-action="Family_Group" asp-route-FamilyGroupID="@item.FamilyGroupID"><div class="dashboardUserImage" id="profileMain"></div></a>
+                        <a asp-controller="Home" asp-action="Family_Group" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@item.FamilyGroupID"><div class="dashboardUserImage" id="profileMain"></div></a>
                         <p class="textMemberDashboardName" id="member_Name_One">@item.FamilyName</p>
                         <p class="textMemberDashboard" id="memberOne_Attribute_One">Created: @item.DateCreated</p>
                       </div>

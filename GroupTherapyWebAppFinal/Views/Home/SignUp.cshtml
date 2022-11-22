@@ -1,18 +1,14 @@
-﻿
+﻿@model GroupTherapyWebAppFinal.Models.UserModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <html>
-    <!-- Developed by Bronagh on 28/10/2022 -->
+    <!-- Developed by Group Therapy on 28/10/2022 -->
 <head>
-        <meta name="description" content="signup Petpal" />
-        <!--meta description-->
-        <meta name="keywords" content="" />
-        <!--meta keywords-->
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>PetPal | Welcome</title>
-        <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
-        <!--css stylesheet-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <link rel="icon" href="" />    
+ 
 </head>
 
 
@@ -34,23 +30,58 @@
                 <p class="pageTitleTextWelcome">Sign up to</p>
                 <p class="pageLogoFancy">PetPal</p>
                 <!--Form Buttons-->
-                <div class="welcomeButton">
-                    <button class="buttonCustomTitle">&nbsp;Email &nbsp;</button>
-                    <button class="buttonCustomTitle">&nbsp;Password &nbsp;</button>
-                    <button class="buttonCustomTitle">&nbsp;Confirm Password &nbsp;</button>
+                <form class="signUpForm" id="form" name="signupForm">
 
-                </div>
-            <!--SignUp Button-->
-            <div>
-                <button class="buttonCustomTitle">&nbsp; Sign Up &nbsp;</button>
-            </div>
-                
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" style="margin-bottom:8px;" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" style="margin-bottom:8px;" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" style="margin-bottom:8px;" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UserType" class="control-label"></label>
+                        <input asp-for="UserType" class="form-control" style="margin-bottom:8px;" />
+                        <span asp-validation-for="UserType" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Gender" class="control-label"></label>
+                        <input asp-for="Gender" class="form-control" style="margin-bottom:8px;" />
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+
+                    <!--Don't forget DateCreated-->
+
+                    <!--SignUp Button-->
+                    <div class="form-group">
+                        <input type="submit" value="Sign Up" class="buttonCustomTitle" />
+                    </div>
+                </form>                
             </div>
             <!--Image/Slideshow area.-->
             <div class="welcomeScreenSection">
-                <img src="images/cat_welcome.png" alt="Cat Head."></img>
+                <img src="images/cat_welcome.png" alt="Cat Head.">
             </div>            
         </div>
+        @section Scripts {
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+        }
 </body>
 </html>
 

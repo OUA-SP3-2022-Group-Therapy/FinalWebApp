@@ -12,10 +12,13 @@ namespace GroupTherapyWebAppFinal.Controllers
 {
     public class HomeController : Controller
     {
+        //Readonly defs - Joshua Wagner
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context, ILogger<HomeController> logger)
         {
+            _context = context;
             _logger = logger;
         }
 
@@ -30,7 +33,14 @@ namespace GroupTherapyWebAppFinal.Controllers
             return View();
         }
 
-        //Verifys the user's identity with the input fields.
+        //Shows signup page when required - Joshua Wagner
+        [HttpGet]
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+
+        //Verifys the user's identity with the input fields - Joshua Wagner
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -43,7 +53,6 @@ namespace GroupTherapyWebAppFinal.Controllers
             {
                 UserModel user = usersDAO.FetchID(usermodel);
                 _logger.LogInformation("User logged in.");
-                //return Content(user.UserModelID.ToString()); ---> Used for testing ID value. Ignore this.
 
                 return RedirectToAction("Dashboard", "Home", new { UserID = user.UserModelID });
             }
@@ -54,44 +63,36 @@ namespace GroupTherapyWebAppFinal.Controllers
 
         }
 
-        //Fetches user details (WIP) - Joshua Wagner
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult GetUserDetails(int UserID)
-        {
-            if (UserID == 0)
-            {
-                return NotFound();
-            }
-
-            UsersDAO usersFull = new UsersDAO();
-            UserModel UserDetails = usersFull.FetchOne(UserID);
-            //return View("Member_Profile", "Home");
-            return Content(UserID.ToString());
-        }
-
+        //Fetches the dashboard once the user logs in - Joshua Wagner
         [HttpGet]
         public IActionResult Dashboard(int UserID)
-        {
-            //return Content(UserID.ToString()); ---> Used for testing ID value.Ignore this.
-
+        {            
             if (UserID == 0)
             {
                 return NotFound();
             }
 
-            DashboardDAO dashboard = new DashboardDAO();
-            Membership Fam = dashboard.FetchFamID(UserID);
-            List<UserModel> Members = new List<UserModel>();
-            Members = dashboard.FetchAllFam(Fam.FamilyGroupID);
+            UsersDAO users = new UsersDAO();
+            UserModel user = users.FetchOne(UserID);
 
-            return View(Members);
+            DashboardDAO dashboard = new DashboardDAO();
+            List<Membership> Fam = dashboard.FetchFamID(UserID);
+
+            List<UserModel> m = new List<UserModel>();
+            foreach(var mem in Fam)
+            {
+                List<UserModel> Members = dashboard.FetchAllFam(mem.FamilyGroupID);
+                m.AddRange(Members);
+            }
+            
+            ViewData["Members"] = m;
+            return View(user);
         }
 
 
-        //Gets the information to show on the member profile (WIP) - Joshua Wagner
+        //Gets the information to show on the member profile - Joshua Wagner
         [HttpGet]
-        public IActionResult Member_Profile(int UserID)
+        public IActionResult Member_Profile(int UserID, int ViewID)
         {
             if (UserID == 0)
             {
@@ -99,42 +100,51 @@ namespace GroupTherapyWebAppFinal.Controllers
             }
 
             UsersDAO member = new UsersDAO();
-            UserModel UserDetails = member.FetchOne(UserID);
+            UserModel user = member.FetchOne(UserID);
+            UserModel viewuser = member.FetchOne(ViewID);
+            ViewData["ViewUser"] = viewuser;
 
             DashboardDAO dashboard = new DashboardDAO();
-            Membership Fam = dashboard.FetchFamID(UserID);
-            int FamID = Fam.FamilyGroupID;
+            List<Membership> Fam = dashboard.FetchFamID(ViewID);
+            //int FamID = Fam.FamilyGroupID;
 
-            List<UserModel> Members = dashboard.FetchOtherFam(UserID, FamID);
-
-            List<UserModel> Formatted = new List<UserModel>
+            List<FamilyGroup> f = new List<FamilyGroup>();
+            foreach(var mem in Fam)
             {
-                UserDetails
-            };
+                List<FamilyGroup> family = dashboard.FetchFamDetails(mem.FamilyGroupID);
+                f.AddRange(family);                
+            }           
 
-            Formatted.Concat(Members);
+            ViewData["Family"] = f;
 
-            List<FamilyGroup> family = dashboard.FetchFamDetails(Fam.FamilyGroupID);
-            ViewData["Family"] = family;
+            //Add for each statement
+            List<Pet> p = new List<Pet>();
+            foreach(var mem in Fam)
+            {
+                List<Pet> pet = dashboard.FetchPetDetails(mem.FamilyGroupID);
+                p.AddRange(pet);
+            }
+            
+            ViewData["Pet"] = p;
 
-            List<Pet> pet = dashboard.FetchPetDetails(Fam.FamilyGroupID);
-            ViewData["Pet"] = pet;
-
-            return View(Formatted);
+            return View(user);
         }
 
-        //Gets the information for the family group page to be displayed (WIP) - Joshua Wagner
+        //Gets the information for the family group page to be displayed - Joshua Wagner
         [HttpGet]
-        public IActionResult Family_Group(int GroupID)
+        public IActionResult Family_Group(int UserID, int GroupID)
         {
             if (GroupID == 0)
             {
                 return NotFound();
             }
 
+            UsersDAO users = new UsersDAO();
+            UserModel user = users.FetchOne(UserID);
+
             DashboardDAO dashboard = new DashboardDAO();
-            List<UserModel> Members = new List<UserModel>();
-            Members = dashboard.FetchAllFam(GroupID);
+            List<UserModel> Members = dashboard.FetchAllFam(GroupID);
+            ViewData["Members"] = Members;
 
             List<UserModel> admin = dashboard.FetchAdmin(GroupID);
             ViewData["Admin"] = admin;
@@ -142,20 +152,24 @@ namespace GroupTherapyWebAppFinal.Controllers
             List<Pet> pet = dashboard.FetchPetDetails(GroupID);
             ViewData["Pet"] = pet;
 
-            return View(Members);
+            return View(user);
         }
 
-        //Gets the information for the pet page to be displayed (WIP) - Joshua Wagner
+        //Gets the information for the pet page to be displayed - Joshua Wagner
         [HttpGet]
-        public IActionResult Pet_Profile(int PetID)
+        public IActionResult Pet_Profile(int UserID, int PetID)
         {
             if (PetID == 0)
             {
                 return NotFound();
             }
 
+            UsersDAO users = new UsersDAO();
+            UserModel user = users.FetchOne(UserID);
+
             DashboardDAO dashboard = new DashboardDAO();
             Pet pet = dashboard.FetchPet(PetID);
+            ViewData["Pet"] = pet;
 
             List<FamilyGroup> family = dashboard.FetchFamDetails(pet.FamilyGroupID);
             ViewData["Family"] = family;
@@ -163,7 +177,24 @@ namespace GroupTherapyWebAppFinal.Controllers
             List<Pet> siblings = dashboard.FetchSiblings(PetID, pet.FamilyGroupID);
             ViewData["Siblings"] = siblings;
 
-            return View(pet);
+            List<Trend> trend = dashboard.FetchTrends(PetID);
+            ViewData["Trends"] = trend;
+
+            return View(user);
         }
+
+        [HttpGet]
+        public IActionResult Schedule(int UserID)
+        {
+            if (UserID == 0)
+            {
+                return NotFound();
+            }
+
+            DashboardDAO dashboard = new DashboardDAO();
+
+            return null;
+        }
+
     }
 }

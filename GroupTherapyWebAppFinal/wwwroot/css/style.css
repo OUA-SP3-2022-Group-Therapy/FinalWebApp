@@ -895,6 +895,13 @@ input[type='number']{
     margin-top: 10px;
 }
 
+label {
+    color: rgba(255,255,255,1);
+    display: block;
+    padding: 10px;
+    margin: 3px;
+}
+
 /* chart */
 .percentage:after {
     content: "";

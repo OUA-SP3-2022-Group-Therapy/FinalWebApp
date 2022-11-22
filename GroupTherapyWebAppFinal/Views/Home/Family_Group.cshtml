@@ -1,4 +1,4 @@
-@model IEnumerable<GroupTherapyWebAppFinal.Models.UserModel>
+@model GroupTherapyWebAppFinal.Models.UserModel
 @{
     ViewData["Title"] = "Family_Group";
 }
@@ -8,6 +8,11 @@
 }
 
 @{
+    Layout = "_Layout";
+}
+
+@{
+    var Members = ViewData["Members"] as List<UserModel>;
     var Admin = ViewData["Admin"] as List<UserModel>;
     var Pet = ViewData["Pet"] as List<Pet>;
 }
@@ -16,19 +21,7 @@
 <html>
 
 <head>
-    <meta name="description" content="" />
-    <!--meta description-->
-    <meta name="keywords" content="" />
-    <!--meta keywords-->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | Family Group</title>
-    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
-    <!--css stylesheet-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="icon" href="" />
-    <!--Fav Icon-->
-
 </head>
 
 <body>
@@ -54,12 +47,12 @@
             -->
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Dashboard", "Home")" target="_self">
+                    <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@Model.UserModelID">
                         <i class="fa fa-user"
               aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Family_Group", "Home")" target="_self">
+                    <a href="" target="_self">
                         <i class="fa fa-users"
               aria-hidden="true" title="Family Groups"></i></a></span></p>
             <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
@@ -103,7 +96,7 @@
                     @foreach(var item in Admin)
                     {
                         <div class="familyUserGridItem">
-                            <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@item.UserModelID"><div class="dashboardUserImage" id="profileMain"></div></a>
+                            <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@item.UserModelID"><div class="dashboardUserImage" id="profileMain"></div></a>
                             <p class="textMemberDashboardName" id="member_Name_One">@item.Name</p>
                             <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Gender</p> 
                             <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.UserType</p>
@@ -123,10 +116,10 @@
             <p class="pageTitleText"> Members</p>  
             <div class="familyGroupInner">
 
-                @foreach(var item in Model)
+                @foreach(var item in Members)
                 {
                     <div class="familyUserGridItem">
-                        <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@item.UserModelID"><div class="dashboardUserImage" id="profileMain"></div></a>
+                            <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@item.UserModelID"><div class="dashboardUserImage" id="profileMain"></div></a>
                         <p class="textMemberDashboardName" id="member_Name_One">@item.Name</p>
                         <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Gender</p> 
                         <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.UserType</p>
@@ -147,16 +140,16 @@
 
             <div class="familyGroupInner">
 
-                <Pet>
-                    @foreach(var item in Pet)
-                    {
-                        <a asp-controller="Home" asp-action="Pet_Profile" asp-route-PetID="@item.PetID"></a>
-                        <p class="textMemberDashboardName" id="member_Name_One">Rex Harper</p>
-                        <p class="textMemberDashboard" id="memberOne_Attribute_One">Dog Breed</p>
-                        <p class="textMemberDashboard" id="memberOne_Attribute_One">Dog Breed</p>
-                    }
-                </Pet>
-
+                @foreach(var item in Pet)
+                {
+                    <div class="familyUserGridItem">
+                        <a asp-controller="Home" asp-action="Pet_Profile" asp-route-UserID="@Model.UserModelID" asp-route-PetID="@item.PetID"></a>
+                        <p class="textMemberDashboardName" id="member_Name_One">@item.Name</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Species</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Breed</p>
+                    </div>
+                }
+                
                 <div class="familyUserGridItem">
                   <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
                   <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Pet</p>                                                

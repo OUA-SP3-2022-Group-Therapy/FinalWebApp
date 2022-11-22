@@ -1,4 +1,4 @@
-@model IEnumerable<GroupTherapyWebAppFinal.Models.UserModel>
+@model GroupTherapyWebAppFinal.Models.UserModel
 
 @{
     ViewData["Title"] = "Dashboard";
@@ -10,6 +10,10 @@
 
 @{
     Layout = "_Layout";
+}
+
+@{
+    var Members = ViewData["Members"] as List<UserModel>;
 }
 
 <!--Developed by Group Therapy 4/10/2022 -->
@@ -42,12 +46,12 @@
             -->
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Dashboard", "Home")" target="_self">
+                    <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@Model.UserModelID">
                         <i class="fa fa-user"
                             aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Family_Group", "Home")" target="_self">
+                    <a href="" target="_self">
                         <i class="fa fa-users"
                             aria-hidden="true" title="Family Groups"></i></a></span></p>
             <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
@@ -120,17 +124,16 @@
             <!--Dashboard Users-->
             <div class="dashboardUsers">
                     
-                @foreach (var item in Model)
+                @foreach (var item in Members)
                 {
                     <div class="dashboardUsersPartition">
-                        <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@item.UserModelID"> <div class="dashboardUserImage" id="profileOne"></div></a>
-                        <p class="textMemberDashboardName" id="member_Name_One">@Html.DisplayFor(modelItem => item.Name)</p>
-                        <p class="textMemberDashboard" id="memberOne_Attribute_One">@Html.DisplayFor(modelItem => item.Gender)</p>
-                        <p class="textMemberDashboard" id="memberOne_Attribute_Two">@Html.DisplayFor(modelItem => item.UserType)</p>
-                        <p class="textMemberDashboard" id="memberOne_Attribute_Three">@Html.DisplayFor(modelItem => item.DateCreated)</p>
+                        <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@item.UserModelID"> <div class="dashboardUserImage" id="profileOne"></div></a>
+                        <p class="textMemberDashboardName" id="member_Name_One">@item.Name</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Gender</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_Two">@item.UserType</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_Three">@item.DateCreated</p>
                     </div>
                 }
-
             </div>
         </div>
 
