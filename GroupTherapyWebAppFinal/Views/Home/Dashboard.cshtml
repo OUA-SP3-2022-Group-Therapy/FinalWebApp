@@ -14,6 +14,7 @@
 
 @{
     var Members = ViewData["Members"] as List<UserModel>;
+    var Family = ViewData["Family"] as List<FamilyGroup>;
 }
 
 <!--Developed by Group Therapy 4/10/2022 -->
@@ -51,12 +52,18 @@
                             aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
                 <span>
-                    <a href="" target="_self">
+                    <a asp-controller="Home" asp-action="All_Fam_Groups" asp-route-UserID="@Model.UserModelID">
                         <i class="fa fa-users"
                             aria-hidden="true" title="Family Groups"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" asp-action="All_Pets" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-paw"
                             aria-hidden="true" title="Pets"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-calendar"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" asp-action="All_Schedules" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-calendar"
                             aria-hidden="true" title="Calendar"></i></a></span></p>
         </div>
         <!-- Add in the login button -->
@@ -70,12 +77,13 @@
         <div class="lineDivider"> <!--menu divider--></div>
 
         <!--TabsGroups-->
-        <div class="sectionSub" style="margin-left:30px;">     
-            <button class="buttonCustomTitle">&nbsp;Group 01&nbsp;</button>
-            <button class="buttonCustomTitle">&nbsp;Group 02&nbsp;</button>         
-            <button class="buttonCustomTitle">&nbsp;Group 03&nbsp;</button>
-            <br></br>                  
-        </div>
+        @foreach (var item in Family)
+        {
+            <div class="sectionSub" style="margin-left:30px;">
+              <a asp-controller="Home" asp-action="Family_Group" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@item.FamilyGroupID"><button class="buttonCustomTitle">&nbsp;@item.FamilyName&nbsp;</button></a>
+            </div>
+        }                        
+        <br>
         <div class="lineDivider"> <!--menu divider--></div>
 
         <!--Page title-->
@@ -201,7 +209,8 @@
             </div>
         </div>
 
-        <script src="~/js/prototypeScript.js"></script>      
+        <script src="~/js/prototypeScript.js"></script>   
+        </div>
 </body>
 
 </html>

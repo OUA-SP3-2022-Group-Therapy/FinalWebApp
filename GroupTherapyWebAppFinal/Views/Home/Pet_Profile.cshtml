@@ -37,7 +37,7 @@
 
             <!--Search Entry-->
             <form action="/" method="GET" class="form">
-                <input type="text" id="search" placeholder="Search..."></input>
+                <input type="text" id="search" placeholder="Search...">
             </form>
 
             <!-- Options for text based nav items or icons ***********************-->
@@ -52,12 +52,15 @@
               aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Family_Group", "Home")" target="_self">
+                    <a asp-controller="Home" asp-action="All_Fam_Groups" asp-route-UserID="@Model.UserModelID">
                         <i class="fa fa-users"
               aria-hidden="true" title="Family Groups"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" asp-action="All_Pets" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-paw"
               aria-hidden="true" title="Pets"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-calendar"
+            <p class="navigationItemIcon"><span><a asp-controller="Home" asp-action="All_Schedules" asp-route-UserID="@Model.UserModelID"><i class="fa fa-calendar"
               aria-hidden="true" title="Calendar"></i></a></span></p>
         </div>
         <!-- Add in the login button -->
@@ -84,7 +87,7 @@
                   <div class="dashboardUserImage" id="profileAnimalOne"></div>
               </div>
 
-              <!--Personal details WIP-->
+              <!--Personal details-->
               <div class="membersProfileSectionDetails">
                   <p class="textEvents" style="font-size:x-large">Personal Details&nbsp;&nbsp;</p>
                   <p class="textEvents">Species: @Pet.Species&nbsp;&nbsp;</p>
@@ -171,14 +174,14 @@
 
             </div>           
             <br> 
-            <input type="number"></input>
+            <input type="number">
             <button class="buttonCustomTitle">&nbsp;Add New Weight&nbsp;</button>
             
          </div>
 
 
       </div>
-      <br></br>
+      <br>
       <div class="lineDividerSection"> <!--menu divider--></div>
 
        <!--Upcoming Events-->

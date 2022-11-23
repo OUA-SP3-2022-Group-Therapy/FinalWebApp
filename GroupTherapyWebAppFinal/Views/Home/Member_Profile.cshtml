@@ -12,7 +12,7 @@
 }
 
 @{
-    var ViewUser = ViewData["ViewUser"] as List<UserModel>;
+    var ViewUser = ViewData["ViewUser"] as UserModel;
     var Family = ViewData["Family"] as List<FamilyGroup>;
     var Pet = ViewData["Pet"] as List<Pet>;
 }
@@ -37,7 +37,7 @@
 
             <!--Search Entry-->
             <form action="/" method="GET" class="form">
-                <input type="text" id="search" placeholder="Search..."></input>
+                <input type="text" id="search" placeholder="Search...">
             </form>
 
             <!-- Options for text based nav items or icons ***********************-->
@@ -52,12 +52,18 @@
               aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
                 <span>
-                    <a href="" 
-                        target="_self"><i class="fa fa-users"
+                    <a asp-controller="Home" asp-action="All_Fam_Groups" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-users"
               aria-hidden="true" title="Family Groups"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" asp-action="All_Pets" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-paw"
               aria-hidden="true" title="Pets"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-calendar"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" a
+                        sp-action="All_Schedules" asp-route-UserID="@Model.UserModelID"><i class="fa fa-calendar"
               aria-hidden="true" title="Calendar"></i></a></span></p>
         </div>
         <!-- Add in the login button -->
@@ -79,16 +85,16 @@
          <div class="membersProfileMain">
           <div class="membersProfileSection">
             <div class="membersProfileSectionImage">
-              <p class="textEvents" style="font-size:X-large">@Html.DisplayFor(modelItem => Model.Name)&nbsp;&nbsp;</p>
+              <p class="textEvents" style="font-size:X-large">@ViewUser.Name&nbsp;&nbsp;</p>
               <div class="dashboardUserImage" id="profileOne"></div>                        
             </div>
 
             <!--Personal profile information-->
             <div class="membersProfileSectionDetails">  
-                <p class="textEvents" style="font-size:x-large">Name:@Html.DisplayFor(modelItem => Model.Name)&nbsp;&nbsp;</p>
-                <p class="textEvents">Age group:@Html.DisplayFor(modelItem => Model.UserType)</p>
-                <p class="textEvents">Gender:@Html.DisplayFor(modelItem => Model.Gender)</p>
-                <p class="textEvents">Date Created:@Html.DisplayFor(modelItem => Model.DateCreated)</p>
+                <p class="textEvents" style="font-size:x-large">Name:@ViewUser.Name&nbsp;&nbsp;</p>
+                <p class="textEvents">Age group:@ViewUser.UserType</p>
+                <p class="textEvents">Gender:@ViewUser.Gender</p>
+                <p class="textEvents">Date Created:@ViewUser.DateCreated</p>
             </div>
 
                 <!--Family infomation-->
@@ -165,6 +171,7 @@
             </div>
             
         </div>
+       </div>
     </div>
 </body>
 

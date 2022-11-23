@@ -1,0 +1,31 @@
+﻿@model GroupTherapyWebAppFinal.Models.Membership
+
+@{
+    int GroupID = ViewBag.GroupID;
+}
+
+<html>
+    <head>
+        <title>Petpal | All Family Groups</title>
+    </head>
+
+    <body>
+        <div class="mainBox">
+            <!--WIP-->
+            <form id="AdminAdd" method="post" asp-action="ChangeAdminStatus">
+                <p class="featureText">Add Admin</p>
+                <div class="overlaySectionButtonLocation">
+                    <button class= "buttonCustomTitle" onclick="">&nbsp;X&nbsp;</button>
+                </div>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="number" asp-for="UserModelID" value=""/>
+                <input type="hidden" asp-for="FamilyGroupID" value="@GroupID"/>
+                <div class="formSection">
+                    <label asp-for="IsAdmin" class="form-control"
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

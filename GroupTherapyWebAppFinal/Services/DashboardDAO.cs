@@ -46,6 +46,7 @@ namespace GroupTherapyWebAppFinal.Services
             return returnList;
         }
 
+        // Used to fetch all family members other than the one being displayed - Joshua Wagner
         public List<UserModel> FetchOtherFam(int UserID, int FamilyID)
         {
             List<UserModel> returnList = new List<UserModel>();
@@ -83,6 +84,7 @@ namespace GroupTherapyWebAppFinal.Services
             return returnList;
         }
 
+        // Used to fetch the family IDs of all groups a member is a part of - Joshua Wagner
         public List<Membership> FetchFamID(int UserID)
         {
             string sqlStatement = "SELECT * FROM dbo.Memberships WHERE UserModelID = @UserModelID";
@@ -116,6 +118,7 @@ namespace GroupTherapyWebAppFinal.Services
             }
         }
 
+        //Used to fetch the family's details - Joshua Wagner
         public List<FamilyGroup> FetchFamDetails(int FamilyID)
         {
             string sqlStatement = "SELECT * FROM dbo.FamilyGroups WHERE FamilyGroupID = @FamilyGroupID";
@@ -151,6 +154,7 @@ namespace GroupTherapyWebAppFinal.Services
             }
         }
 
+        //Used to fetch the full pet details from a family - Joshua Wagner
         public List<Pet> FetchPetDetails(int FamilyID)
         {
             string sqlStatement = "SELECT * FROM dbo.Pets WHERE FamilyGroupID = @FamilyGroupID";
@@ -189,6 +193,7 @@ namespace GroupTherapyWebAppFinal.Services
             }
         }
 
+        //Used to fetch the admin user details - Joshua Wagner
         public List<UserModel> FetchAdmin(int FamilyID)
         {
             List<UserModel> returnList = new List<UserModel>();
@@ -224,6 +229,7 @@ namespace GroupTherapyWebAppFinal.Services
             return returnList;
         }
 
+        //Fetch an individual pet's details - Joshua Wagner
         public Pet FetchPet(int PetID)
         {
             string sqlStatement = "SELECT * FROM dbo.Pets WHERE PetID = @PetID";
@@ -260,11 +266,12 @@ namespace GroupTherapyWebAppFinal.Services
             }
         }
 
+        //Fetchs all the siblings of the pets - Joshua Wagner
         public List<Pet> FetchSiblings(int PetID, int FamilyID)
         {
             List<Pet> returnList = new List<Pet>();
 
-            string sqlQuery = "SELECT * FROM dbo.Pets INNER JOIN dbo.FamilyGroups ON dbo.Pets.FamilyGroupID = dbo.FamilyGroups.FamilyGroupID WHERE dbo.FamilyGroup.FamilyGroupID=@FamilyGroupID AND dbo.Pets.PetID != @PetID";
+            string sqlQuery = "SELECT * FROM dbo.Pets INNER JOIN dbo.FamilyGroups ON dbo.Pets.FamilyGroupID = dbo.FamilyGroups.FamilyGroupID WHERE dbo.FamilyGroups.FamilyGroupID=@FamilyGroupID AND dbo.Pets.PetID != @PetID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -297,11 +304,12 @@ namespace GroupTherapyWebAppFinal.Services
             return returnList;
         }
 
+        //Used to fetch all the pet trends for 1 pet - Joshua Wagner
         public List<Trend> FetchTrends(int PetID)
         {
             List<Trend> returnList = new List<Trend>();
 
-            string sqlQuery = "SELECT * FROM dbo.Trends WHERE PetID = @PetID GROUP BY Date";
+            string sqlQuery = "SELECT * FROM dbo.Trends WHERE PetID = @PetID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -327,6 +335,75 @@ namespace GroupTherapyWebAppFinal.Services
 
             return returnList;
 
+        }
+
+        //Fetch an individual schedule's details - Joshua Wagner
+        public Schedule FetchSchedule(int ScheduleID)
+        {
+            string sqlStatement = "SELECT * FROM dbo.Schedules WHERE ScheduleID = @ScheduleID";
+
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlStatement, sqlConnection);
+                command.Parameters.Add("@ScheduleID", System.Data.SqlDbType.Int).Value = ScheduleID;
+
+                Schedule schedule = new Schedule();
+
+                try
+                {
+                    sqlConnection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        schedule.ScheduleID = reader.GetInt32(0);
+                        schedule.ScheduleName = reader.GetString(1);
+                        schedule.StartDateTime = reader.GetDateTime(2);
+                        schedule.EndDateTime = reader.GetDateTime(3);
+                        schedule.ScheduleType = reader.GetString(4);
+                        schedule.Frequency = reader.GetString(5);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                return schedule;
+            }
+        }
+
+        //Used to fetch all the schedules for a specific family group - Joshua Wagner
+        public List<Schedule> FetchSchedules(int FamilyID)
+        {
+            List<Schedule> returnList = new List<Schedule>();
+
+            string sqlQuery = "SELECT * FROM dbo.Schedules WHERE FamilyGroupID = @FamilyGroupID";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.Parameters.Add("@FamilyGroupID", System.Data.SqlDbType.Int).Value = FamilyID;
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Schedule schedule = new Schedule();
+                        schedule.ScheduleID = reader.GetInt32(0);
+                        schedule.ScheduleName = reader.GetString(1);
+                        schedule.StartDateTime = reader.GetDateTime(2);
+                        schedule.EndDateTime = reader.GetDateTime(3);
+                        schedule.ScheduleType = reader.GetString(4);
+                        schedule.Frequency = reader.GetString(5);
+                    }
+                }
+            }
+
+            return returnList;
         }
     }
 }

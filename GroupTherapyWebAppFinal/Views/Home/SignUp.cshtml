@@ -64,7 +64,10 @@
                         <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
 
-                    <!--Don't forget DateCreated-->
+                    <div class="form-group">
+                        <input asp-for="DateCreated" type="hidden" class="form-control" style="margin-bottom:8px;" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+                        <span asp-validation-for="DateCreated" class="text-danger"></span>
+                    </div>
 
                     <!--SignUp Button-->
                     <div class="form-group">

@@ -15,6 +15,9 @@
     var Members = ViewData["Members"] as List<UserModel>;
     var Admin = ViewData["Admin"] as List<UserModel>;
     var Pet = ViewData["Pet"] as List<Pet>;
+    var Family = ViewData["Family"] as List<FamilyGroup>;
+    var Schedules = ViewData["Schedules"] as List<Schedule>;
+    int FamID = ViewBag.FamID;
 }
 
 <!--Developed by Group Therapy 27/10/2022 -->
@@ -52,12 +55,18 @@
               aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
                 <span>
-                    <a href="" target="_self">
+                    <a asp-controller="Home" asp-action="All_Fam_Groups" asp-route-UserID="@Model.UserModelID">
                         <i class="fa fa-users"
               aria-hidden="true" title="Family Groups"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" asp-action="All_Pets" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-paw"
               aria-hidden="true" title="Pets"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-calendar"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" asp-action="All_Schedules" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-calendar"
               aria-hidden="true" title="Calendar"></i></a></span></p>
         </div>
         <!-- Add in the login button -->
@@ -71,12 +80,13 @@
         <div class="lineDivider"> <!--menu divider--></div>
 
         <!--TabsGroups-->
-        <div class="sectionSub" style="margin-left:30px;">     
-          <button class="buttonCustomTitle">&nbsp;Group 01&nbsp;</button>
-          <button class="buttonCustomTitle">&nbsp;Group 02&nbsp;</button>         
-          <button class="buttonCustomTitle">&nbsp;Group 03&nbsp;</button>
-          <br></br>                  
-      </div>
+        @foreach (var item in Family)
+        {
+            <div class="sectionSub" style="margin-left:30px;">
+              <a asp-controller="Home" asp-action="Family_Group" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@item.FamilyGroupID"><button class="buttonCustomTitle">&nbsp;@item.FamilyName&nbsp;</button></a>
+            </div>
+        }                        
+        <br>
       <div class="lineDivider"> <!--menu divider--></div>
 
         <!--Page title-->
@@ -104,10 +114,12 @@
                     }
                 </Admin>
 
+                <a asp-controller="Home" asp-action="Add_Admin" asp-route-FamilyID="@FamID">
                 <div class="familyUserGridItem">
                     <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
                     <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Admin</p>
                 </div>
+                </a>
             </div>
         </div>
         
@@ -119,7 +131,7 @@
                 @foreach(var item in Members)
                 {
                     <div class="familyUserGridItem">
-                            <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@item.UserModelID"><div class="dashboardUserImage" id="profileMain"></div></a>
+                        <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@item.UserModelID"><div class="dashboardUserImage" id="profileMain"></div></a>
                         <p class="textMemberDashboardName" id="member_Name_One">@item.Name</p>
                         <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Gender</p> 
                         <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.UserType</p>
@@ -130,6 +142,7 @@
                     <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
                     <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Member</p>                                                
                 </div>
+
             </div>
         </div>
 
@@ -137,13 +150,12 @@
         <div class="familyGroup">                        
             <!--Pets section-->
             <p class="pageTitleText"> Pets</p>  
-
             <div class="familyGroupInner">
 
                 @foreach(var item in Pet)
                 {
                     <div class="familyUserGridItem">
-                        <a asp-controller="Home" asp-action="Pet_Profile" asp-route-UserID="@Model.UserModelID" asp-route-PetID="@item.PetID"></a>
+                        <a asp-controller="Home" asp-action="Pet_Profile" asp-route-UserID="@Model.UserModelID" asp-route-PetID="@item.PetID"><div class="dashboardUserImage" id="profileAnimalOne"></div></a>
                         <p class="textMemberDashboardName" id="member_Name_One">@item.Name</p>
                         <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Species</p>
                         <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Breed</p>
@@ -152,8 +164,9 @@
                 
                 <div class="familyUserGridItem">
                   <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
-                  <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Pet</p>                                                
-                </div>            
+                  <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Pet</p>
+                </div>
+
             </div>
         </div>
     </div> <!--End of family group-->
@@ -166,27 +179,20 @@
         <p class="pageTitleText"> Schedules</p>
       </div>
 
-      <div class="sectionSubHorizontal">                                              
-            <div class="card">                             
-              <p class="textEvents">Schedule Name</p>            
-              <div class="cardImageSection">
-                <div class="cardImageCircle"></div>
-                <div class="cardImageCircle"></div>
-              </div>  
-              <p class="textScheduleCard">Schedule Type</p>
-              <p class="textScheduleCard">Schedule Details</p>
-              <p class="textScheduleCard">Next Occurance</p>
-            </div>
+      <!--Schedule cards-->
+      <div class="sectionSubHorizontal">
 
-            <div class="card">
-              <p class="textEvents">Schedule Name</p>
-              <div class="cardImageSection">
-                <div class="cardImageCircle"></div>
-              </div> 
-              <p class="textScheduleCard">Schedule Type</p>
-              <p class="textScheduleCard">Schedule Details</p>
-              <p class="textScheduleCard">Next Occurance</p>
-            </div>
+            @foreach (var item in Schedules)
+            {
+                <div class="card">
+                    <a asp-controller="Home" asp-action="Schedule_Profile" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@item.ScheduleID"><div class="dashboardUserImage" id="profileAnimalOne"></a>
+                    <p class="textEvents" id="member_Name_One">@item.ScheduleName</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Type: @item.ScheduleType</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Frequency: @item.Frequency</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Ends: @item.StartDateTime</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Ends: @item.EndDateTime</p>
+                </div>
+            }
 
             <div class="card">
               <br>
