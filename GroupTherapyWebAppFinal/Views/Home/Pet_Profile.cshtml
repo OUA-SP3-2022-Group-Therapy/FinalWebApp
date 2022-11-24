@@ -122,8 +122,7 @@
           <div class="membersProfileSection">
             
             <p class="textEvents" style="font-size:X-large; text-align: left;">Trends</p>               
-            <button class="buttonCustomTitle">&nbsp;Weight&nbsp;</button>
-            <button class="buttonCustomTitle">&nbsp;Height&nbsp;</button>
+            <br />
             <div class= "trendBox"> 
                 <table class="table">
                     <thead>
@@ -173,10 +172,10 @@
                       </figure>-->           
 
             </div>           
-            <br> 
-            <input type="number">
-            <button class="buttonCustomTitle">&nbsp;Add New Weight&nbsp;</button>
-            
+            <br>
+
+                <a asp-action="Add_Trend" asp-route-UserID="@Model.UserModelID" asp-route-PetID="@Pet.PetID"><button class="buttonCustomTitle">&nbsp;Add New&nbsp;</button></a>
+
          </div>
 
 

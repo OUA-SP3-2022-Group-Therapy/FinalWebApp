@@ -1,0 +1,21 @@
+﻿@model GroupTherapyWebAppFinal.Models.Pet
+
+@{
+    ViewData["Title"] = "Delete Pet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int UserID = ViewBag.UserID;
+    int GroupID = ViewBag.GroupID;
+}
+}
+
+<h1>Delete Pet</h1>
+<div>    
+    <form asp-action="DeletePet">
+        <div class="form-group">
+                <label asp-for="PetID" class="control-label"></label>
+                <input asp-for="PetID" class="form-control" />
+                <span asp-validation-for="PetID" class="text-danger"></span>
+        </div>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+</div>

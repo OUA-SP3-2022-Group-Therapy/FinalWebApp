@@ -161,7 +161,7 @@ namespace GroupTherapyWebAppFinal.Controllers
         {
             if (GroupID == 0)
             {
-                return NotFound();
+                return RedirectToAction("Add_Family_Group");
             }
 
             UsersDAO users = new UsersDAO();
@@ -225,7 +225,7 @@ namespace GroupTherapyWebAppFinal.Controllers
         }
 
         [HttpGet]
-        public IActionResult Schedule_Profile(int UserID, int FamilyID)
+        public IActionResult Schedule_Profile(int UserID, int FamilyID, int ScheduleID)
         {
             if (UserID == 0)
             {
@@ -236,8 +236,11 @@ namespace GroupTherapyWebAppFinal.Controllers
             UserModel user = users.FetchOne(UserID);
 
             DashboardDAO dashboard = new DashboardDAO();
-            Schedule schedule = dashboard.FetchSchedule(FamilyID);
+            Schedule schedule = dashboard.FetchSchedule(ScheduleID);
             ViewData["ScheduleDet"] = schedule;
+            ViewBag.UserID = UserID;
+            ViewBag.FamID = FamilyID; 
+            ViewBag.ScheduleID = ScheduleID;
 
             return View(user);
         }
@@ -319,31 +322,107 @@ namespace GroupTherapyWebAppFinal.Controllers
 
             return View(user);
         }
-
+                
         [HttpGet]
-        public IActionResult Add_Admin(int GroupID)
+        public IActionResult Add_Member(int UserID, int GroupID)
         {
+            ViewBag.UserID = UserID;
             ViewBag.GroupID = GroupID;
             return View();
         }
 
         [HttpGet]
-        public IActionResult Add_User(int GroupID)
+        public IActionResult Add_Pet(int UserID, int GroupID)
         {
+            ViewBag.UserID = UserID;
             ViewBag.GroupID = GroupID;
+            return View();
+        }        
+
+        [HttpGet]
+        public IActionResult Add_Family_Group(int UserID)
+        {
+            ViewBag.UserID = UserID;
             return View();
         }
 
         [HttpGet]
-        public IActionResult Add_Pet(int GroupID)
+        public IActionResult Add_Trend(int UserID, int PetID)
         {
-            ViewBag.GroupID = GroupID;
+            ViewBag.UserID = UserID;
+            ViewBag.PetID = PetID;
             return View();
         }
 
-        //To be implemented
         [HttpPost]
-        public async Task<IActionResult> ChangeAdminStatus(int UserID, int GroupID, [Bind("UserModelID,FamilyGroupID,IsAdmin")] Membership membership)
+        public async Task<IActionResult> AddTrend([Bind("PetID,Date,Height,Weight")] Trend trend, int UserID, int PetID)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(trend);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Pet_Profile", new { UserID, PetID });
+            }
+            return RedirectToAction("Pet_Profile", new { UserID, PetID });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddFamilyGroup([Bind("FamilyGroupID,FamilyName,DateCreated,MemberStatus")] FamilyGroup familyGroup, int UserID)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(familyGroup);
+                ///need to create and add user membership
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMember([Bind("UserModelID,FamilyGroupID,IsAdmin")] Membership membership, int UserID, int GroupID)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(membership);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Family_Group", new { UserID, GroupID });
+            }
+            return RedirectToAction("Family_Group", new { UserID, GroupID });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPet([Bind("UserModelID,FamilyGroupID,IsAdmin")] Pet pet, int UserID, int GroupID)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(pet);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Family_Group", new { UserID, GroupID });
+            }
+            return RedirectToAction("Family_Group", new { UserID, GroupID });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add_Admin(int UserID, int GroupID)
+        {
+            ViewBag.UserID = UserID;
+            ViewBag.GroupID = GroupID;
+            var membership = await _context.Memberships.FindAsync(UserID, GroupID);
+            return View(membership);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete_Admin(int UserID, int GroupID)
+        {
+            ViewBag.UserID = UserID;
+            ViewBag.GroupID = GroupID;
+            var membership = await _context.Memberships.FindAsync(UserID, GroupID);
+            return View(membership);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeAdminStatus([Bind("UserModelID,FamilyGroupID,IsAdmin")] Membership membership, int UserID, int GroupID)
         {
             if (UserID == 0)
             {
@@ -366,30 +445,166 @@ namespace GroupTherapyWebAppFinal.Controllers
             return RedirectToAction("Family_Group", new { UserID, GroupID });
         }
 
-        //To be implemented
+        [HttpGet]
+        public IActionResult Create_Schedule(int UserID, int GroupID)
+        {
+            ViewBag.UserID = UserID;
+            ViewBag.GroupID = GroupID;
+            return View();
+        }
+
         [HttpPost]
-        public async Task<IActionResult> AddFamUser(int UserID, int GroupID, [Bind("UserModelID,FamilyGroupID,IsAdmin")] Membership membership)
+        public async Task<IActionResult> CreateSchedule([Bind("ScheduleID,ScheduleName,StartDateTime,EndDateTime,ScheduleType,Frequency,Dose,Description,FamilyGroupID")] Schedule schedule, int UserID, int GroupID)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(membership);
+                _context.Add(schedule);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Family_Group", new { UserID, GroupID });
+                return RedirectToAction("Family_Group", new {UserID, GroupID});
             }
             return RedirectToAction("Family_Group", new { UserID, GroupID });
         }
 
-        //To be implemented
-        [HttpPost]
-        public async Task<IActionResult> AddPet(int UserID, int GroupID, [Bind("UserModelID,FamilyGroupID,IsAdmin")] Pet pet)
+        [HttpGet]
+        public async Task<IActionResult> Edit_Schedule(int UserID, int GroupID, int ScheduleID)
         {
+            var schedule = await _context.Schedules.FindAsync(ScheduleID);
+            if (schedule == null)
+            {
+                return NotFound();
+            }
+            ViewBag.UserID = UserID;
+            ViewBag.GroupID = GroupID;
+            return View(schedule);
+        }
+
+        public async Task<IActionResult> EditSchedule([Bind("ScheduleID,ScheduleName,StartDateTime,EndDateTime,ScheduleType,Frequency,Dose,Description,FamilyGroupID")] Schedule schedule, int UserID, int GroupID)
+        {
+            if (UserID == 0)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
-                _context.Add(pet);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    _context.Update(schedule);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    throw;
+                }
                 return RedirectToAction("Family_Group", new { UserID, GroupID });
             }
             return RedirectToAction("Family_Group", new { UserID, GroupID });
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> Delete_Member(int UserID, int GroupID)
+        {
+            ViewBag.UserID = UserID;
+            ViewBag.GroupID = GroupID;
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete_Pet(int UserID, int GroupID)
+        {            
+            ViewBag.UserID = UserID;
+            ViewBag.GroupID = GroupID;
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete_Schedule(int UserID, int GroupID)
+        {
+            
+            ViewBag.UserID = UserID;
+            ViewBag.GroupID = GroupID;
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete_Family_Group(int UserID, int GroupID)
+        {
+            
+            ViewBag.UserID = UserID;
+            ViewBag.GroupID = GroupID;
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteFamGroup(int FamID)
+        {
+            if (_context.FamilyGroups == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.FamilyGroups'  is null.");
+            }
+            var familyGroup = await _context.FamilyGroups.FindAsync(FamID);
+            if (familyGroup != null)
+            {
+                _context.FamilyGroups.Remove(familyGroup);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeletePet(int PetID)
+        {
+            if (_context.Pets == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Pets'  is null.");
+            }
+            var pet = await _context.Pets.FindAsync(PetID);
+            if (pet != null)
+            {
+                _context.Pets.Remove(pet);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteMember(int UserModelID)
+        {
+            if (_context.Memberships == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Members'  is null.");
+            }
+            var membership = await _context.Memberships.FindAsync(UserModelID);
+            if (membership != null)
+            {
+                _context.Memberships.Remove(membership);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteSchedule(int ScheduleID)
+        {
+            if (_context.Memberships == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Schedules'  is null.");
+            }
+            var schedule = await _context.Schedules.FindAsync(ScheduleID);
+            if (schedule != null)
+            {
+                _context.Schedules.Remove(schedule);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }

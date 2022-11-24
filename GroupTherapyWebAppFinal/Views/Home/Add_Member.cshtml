@@ -1,0 +1,34 @@
+﻿@model GroupTherapyWebAppFinal.Models.Membership
+
+@{
+    ViewData["Title"] = "Add_Member";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int UserID = ViewBag.UserID;
+    int GroupID = ViewBag.GroupID;
+}
+
+<h1>Add a new user</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddMember" asp-route-UserID="@UserID" asp-route-GroupID="@GroupID">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserModelID" class="control-label"></label>
+                <input asp-for="UserModelID" class="form-control" />
+                <span asp-validation-for="UserModelID" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="FamilyGroupID" value="@GroupID" />
+            <input type="hidden" asp-for="IsAdmin" value="0" />
+            <div class="form-group">
+                <input type="submit" value="Add Member" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

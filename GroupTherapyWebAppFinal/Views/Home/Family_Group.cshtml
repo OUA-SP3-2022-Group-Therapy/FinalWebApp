@@ -138,10 +138,12 @@
                     </div>
                 }
 
+                <a asp-controller="Home" asp-action="Add_Member" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID" >
                 <div class="familyUserGridItem">
                     <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
                     <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Member</p>                                                
                 </div>
+                </a>
 
             </div>
         </div>
@@ -162,10 +164,12 @@
                     </div>
                 }
                 
+                <a asp-controller="Home" asp-action="Add_Pet" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID" >
                 <div class="familyUserGridItem">
                   <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
                   <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Pet</p>
                 </div>
+                </a>
 
             </div>
         </div>
@@ -185,21 +189,34 @@
             @foreach (var item in Schedules)
             {
                 <div class="card">
-                    <a asp-controller="Home" asp-action="Schedule_Profile" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@item.ScheduleID"><div class="dashboardUserImage" id="profileAnimalOne"></a>
+                    <a asp-controller="Home" asp-action="Schedule_Profile" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@item.FamilyGroupID" asp-route-ScheduleID="@item.ScheduleID"><div class="dashboardUserImage" id="profileAnimalOne"></a>
                     <p class="textEvents" id="member_Name_One">@item.ScheduleName</p>
                     <p class="cardImageSection" id="memberOne_Attribute_One">Type: @item.ScheduleType</p>
                     <p class="cardImageSection" id="memberOne_Attribute_One">Frequency: @item.Frequency</p>
-                    <p class="cardImageSection" id="memberOne_Attribute_One">Ends: @item.StartDateTime</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Starts: @item.StartDateTime</p>
                     <p class="cardImageSection" id="memberOne_Attribute_One">Ends: @item.EndDateTime</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Dose: @item.Dose</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Details: @item.Description</p>
                 </div>
             }
 
+            <a asp-controller="Home" asp-action="Create_Schedule" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID" >
             <div class="card">
               <br>
               <p class="textEvents" style="font-size: xx-large;">+</p>
               <p class="textEvents" style="font-size: large;">Add Schedule</p>
             </div>            
-      </div>
+            </a>
+
+            <a asp-action="Delete_Family_Group" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID" asp-route-FamID="@FamID">
+                <button class="buttonCustomTitle">&nbsp;Delete Family Group&nbsp;</button>
+            </a>
+
+            <a asp-controller="Home" asp-action="Delete_Admin" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID"><button class="buttonCustomTitle">&nbsp;Remove Admin&nbsp;</button></a>
+            <a asp-controller="Home" asp-action="Delete_Member" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID"><button class="buttonCustomTitle">&nbsp;Remove Member&nbsp;</button></a>
+            <a asp-controller="Home" asp-action="Delete_Pet" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID"><button class="buttonCustomTitle">&nbsp;Remove Pet&nbsp;</button></a>
+            <br></br>
+        </div>
 
       <div class="lineDividerSection"> <!--menu divider--></div>
 
@@ -211,12 +228,8 @@
 
     <br>
     <!--WIP adding asp CRUD actions to these buttons-->
-  <div class="sectionSub" style="margin-left:30px;">     
-      <button class="buttonCustomTitle">&nbsp;Transfer Ownership&nbsp;</button>
-      <button class="buttonCustomTitle">&nbsp;Remove Member&nbsp;</button>           
-      <button class="buttonCustomTitle">&nbsp;Remove Pet&nbsp;</button>  
-      <button class="buttonCustomTitle">&nbsp;Delete Family Group&nbsp;</button>  
-      <br></br>                  
+  <div class="sectionSub" style="margin-left:30px;">
+                      
   </div>
 
 
