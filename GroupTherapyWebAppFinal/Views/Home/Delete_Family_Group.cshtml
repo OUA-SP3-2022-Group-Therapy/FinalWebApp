@@ -1,0 +1,39 @@
+﻿@model GroupTherapyWebAppFinal.Models.FamilyGroup
+
+@{
+    ViewData["Title"] = "Delete Family Group";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int UserID = ViewBag.UserID;
+    int GroupID = ViewBag.GroupID;
+}
+
+<h1>Delete Family Group</h1>
+<div>
+    <h4>FamilyGroup</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FamilyName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FamilyName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MemberStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MemberStatus)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteFamGroup" asp-route-UserID="@UserID" asp-route-GroupID="@GroupID">
+        <input type="hidden" asp-for="FamilyGroupID" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+</div>

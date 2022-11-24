@@ -15,7 +15,7 @@
 <html>
 
 <head>
-
+    <title>Login Page</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
                 <p class="pageLogoFancy">PetPal</p>
                 <div class="welcomeButton">
                     <button class= "buttonCustomTitle" onclick="showSignUp();">Log In</button>
-                    <a href="@Url.Action("Create", "UserModels")" target="_self"><button class="buttonCustomTitle">Sign Up</button></a>
+                    <a href="@Url.Action("SignUp", "Home")" target="_self"><button class="buttonCustomTitle">Sign Up</button></a>
                 </div>
             </div>
             <!--Image/Slideshow area.-->
@@ -71,26 +71,24 @@
                     <!--Formatting lines are left as is but related form stuff replaced some content. Joshua Wagner-->
                     <p class="featureText">Log in to PetPal</p>
                     <div class="overlaySectionButtonLocation">
-                        <button class= "buttonCustomTitle" onclick="showSignUp();">&nbsp;X&nbsp;</button>
+                        <button class= "buttonCustomTitle" onclick="">&nbsp;X&nbsp;</button>
                     </div>
 
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <!--Section for Email input. Joshua Wagner-->
                     <div class="formSection">
-                        <p class="formText">Email</p>
-                        <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
-                        <label asp-for="Email" class="form-label"></label>
+                        <label asp-for="Email" class="formText"></label>
+                        <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />                        
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <br></br>
                     <!--Section for Password input. Joshua Wagner-->
                     <div class="formSection">
-                        <p class="formText">Password</p>
-                        <input asp-for="Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                        <label asp-for="Password" class="form-label"></label>
+                        <label asp-for="Password" class="formText"></label>
+                        <input asp-for="Password" class="form-control" autocomplete="current-password" aria-required="true" />                        
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-                    
+                    <br><br>
                     <div>
                         <button id="login-submit" type="submit" class="buttonCustomTitle">Log in</button>
                     </div>                    

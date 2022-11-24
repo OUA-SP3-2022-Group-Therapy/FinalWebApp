@@ -1,3 +1,4 @@
+@model GroupTherapyWebAppFinal.Models.UserModel
 @{
     ViewData["Title"] = "Family_Group";
 }
@@ -6,23 +7,24 @@
     ViewBag.Title = "Family_Group";
 }
 
+@{
+    Layout = "_Layout";
+}
+
+@{
+    var Members = ViewData["Members"] as List<UserModel>;
+    var Admin = ViewData["Admin"] as List<UserModel>;
+    var Pet = ViewData["Pet"] as List<Pet>;
+    var Family = ViewData["Family"] as List<FamilyGroup>;
+    var Schedules = ViewData["Schedules"] as List<Schedule>;
+    int FamID = ViewBag.FamID;
+}
+
 <!--Developed by Group Therapy 27/10/2022 -->
 <html>
 
 <head>
-    <meta name="description" content="" />
-    <!--meta description-->
-    <meta name="keywords" content="" />
-    <!--meta keywords-->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | Family Group</title>
-    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
-    <!--css stylesheet-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="icon" href="" />
-    <!--Fav Icon-->
-
 </head>
 
 <body>
@@ -48,17 +50,23 @@
             -->
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Dashboard", "Home")" target="_self">
+                    <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@Model.UserModelID">
                         <i class="fa fa-user"
               aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Family_Group", "Home")" target="_self">
+                    <a asp-controller="Home" asp-action="All_Fam_Groups" asp-route-UserID="@Model.UserModelID">
                         <i class="fa fa-users"
               aria-hidden="true" title="Family Groups"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" asp-action="All_Pets" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-paw"
               aria-hidden="true" title="Pets"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-calendar"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" asp-action="All_Schedules" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-calendar"
               aria-hidden="true" title="Calendar"></i></a></span></p>
         </div>
         <!-- Add in the login button -->
@@ -72,12 +80,13 @@
         <div class="lineDivider"> <!--menu divider--></div>
 
         <!--TabsGroups-->
-        <div class="sectionSub" style="margin-left:30px;">     
-          <button class="buttonCustomTitle">&nbsp;Group 01&nbsp;</button>
-          <button class="buttonCustomTitle">&nbsp;Group 02&nbsp;</button>         
-          <button class="buttonCustomTitle">&nbsp;Group 03&nbsp;</button>
-          <br></br>                  
-      </div>
+        @foreach (var item in Family)
+        {
+            <div class="sectionSub" style="margin-left:30px;">
+              <a asp-controller="Home" asp-action="Family_Group" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@item.FamilyGroupID"><button class="buttonCustomTitle">&nbsp;@item.FamilyName&nbsp;</button></a>
+            </div>
+        }                        
+        <br>
       <div class="lineDivider"> <!--menu divider--></div>
 
         <!--Page title-->
@@ -89,74 +98,79 @@
     <!--Family group-->
     <div class="familySection">
         <div class="familyGroup">    
-            <!--Family Headings Admin-->
+            <!--Admin section-->
             <p class="pageTitleText"> Admin</p>  
-            <div class="familyGroupInner">     
+            <div class="familyGroupInner">
+                
+                <Admin>
+                    @foreach(var item in Admin)
+                    {
+                        <div class="familyUserGridItem">
+                            <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@item.UserModelID"><div class="dashboardUserImage" id="profileMain"></div></a>
+                            <p class="textMemberDashboardName" id="member_Name_One">@item.Name</p>
+                            <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Gender</p> 
+                            <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.UserType</p>
+                        </div>
+                    }
+                </Admin>
 
-              <div class="familyUserGridItem">
-                        <a href="@Url.Action("Member_Profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileMain"></div></a>
-                <p class="textMemberDashboardName" id="member_Name_One">Laurie Harper</p>
-                <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
-              </div>    
-
+                <a asp-controller="Home" asp-action="Add_Admin" asp-route-FamilyID="@FamID">
+                <div class="familyUserGridItem">
+                    <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
+                    <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Admin</p>
+                </div>
+                </a>
             </div>
         </div>
-
+        
         <div class="familyGroup">                        
-            <!--Family Headings Members-->
+            <!--Members section-->
             <p class="pageTitleText"> Members</p>  
-            <div class="familyGroupInner"> 
+            <div class="familyGroupInner">
 
-              <div class="familyUserGridItem">
-                        <a href="@Url.Action("Member_Profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileMain"></div></a>
-                <p class="textMemberDashboardName" id="member_Name_One">Laurie Harper</p>
-                <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
-              </div>    
-              
-              <div class="familyUserGridItem">
-                        <a href="@Url.Action("Member_Profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileTwo"></div></a>
-                <p class="textMemberDashboardName" id="member_Name_One">Ash Harper</p>
-                <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
-              </div>   
+                @foreach(var item in Members)
+                {
+                    <div class="familyUserGridItem">
+                        <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@item.UserModelID"><div class="dashboardUserImage" id="profileMain"></div></a>
+                        <p class="textMemberDashboardName" id="member_Name_One">@item.Name</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Gender</p> 
+                        <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.UserType</p>
+                    </div>
+                }
 
-              <div class="familyUserGridItem">
-                        <a href="@Url.Action("Member_Profile", "Home")" target="_self"><div class="dashboardUserImage" id="profileThree"></div></a>
-                <p class="textMemberDashboardName" id="member_Name_One">Ben Harper</p>
-                <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
-              </div> 
-
-              <div class="familyUserGridItem">
-                <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
-                <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Member</p>                                                
-              </div>   
+                <a asp-controller="Home" asp-action="Add_Member" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID" >
+                <div class="familyUserGridItem">
+                    <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
+                    <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Member</p>                                                
+                </div>
+                </a>
 
             </div>
         </div>
 
 
         <div class="familyGroup">                        
-            <!--Family Headings Members-->
+            <!--Pets section-->
             <p class="pageTitleText"> Pets</p>  
+            <div class="familyGroupInner">
 
-            <div class="familyGroupInner">     
+                @foreach(var item in Pet)
+                {
+                    <div class="familyUserGridItem">
+                        <a asp-controller="Home" asp-action="Pet_Profile" asp-route-UserID="@Model.UserModelID" asp-route-PetID="@item.PetID"><div class="dashboardUserImage" id="profileAnimalOne"></div></a>
+                        <p class="textMemberDashboardName" id="member_Name_One">@item.Name</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Species</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_One">@item.Breed</p>
+                    </div>
+                }
+                
+                <a asp-controller="Home" asp-action="Add_Pet" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID" >
+                <div class="familyUserGridItem">
+                  <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
+                  <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Pet</p>
+                </div>
+                </a>
 
-              <div class="familyUserGridItem">
-                        <a href="@Url.Action("Pet_Profile", "Home")"><div class="dashboardUserImage" id="profileAnimalOne"></div></a>
-                <p class="textMemberDashboardName" id="member_Name_One">Rex Harper</p>
-                <p class="textMemberDashboard" id="memberOne_Attribute_One">Dog Breed</p>                                                
-              </div>    
-
-              <div class="familyUserGridItem">
-                        <a href="@Url.Action("Pet_Profile", "Home")"><div class="dashboardUserImage" id="profileAnimalTwo"></div></a>
-                <p class="textMemberDashboardName" id="member_Name_One">Bandit Harper</p>
-                <p class="textMemberDashboard" id="memberOne_Attribute_One">Dog Breed</p>                                                
-              </div>    
-
-              <div class="familyUserGridItem">
-                <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
-                <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Pet</p>                                                
-              </div>   
-            
             </div>
         </div>
     </div> <!--End of family group-->
@@ -169,34 +183,40 @@
         <p class="pageTitleText"> Schedules</p>
       </div>
 
-      <div class="sectionSubHorizontal">                                              
-            <div class="card">                             
-              <p class="textEvents">Schedule Name</p>            
-              <div class="cardImageSection">
-                <div class="cardImageCircle"></div>
-                <div class="cardImageCircle"></div>
-              </div>  
-              <p class="textScheduleCard">Schedule Type</p>
-              <p class="textScheduleCard">Schedule Details</p>
-              <p class="textScheduleCard">Next Occurance</p>
-            </div>
+      <!--Schedule cards-->
+      <div class="sectionSubHorizontal">
 
-            <div class="card">
-              <p class="textEvents">Schedule Name</p>
-              <div class="cardImageSection">
-                <div class="cardImageCircle"></div>
-              </div> 
-              <p class="textScheduleCard">Schedule Type</p>
-              <p class="textScheduleCard">Schedule Details</p>
-              <p class="textScheduleCard">Next Occurance</p>
-            </div>
+            @foreach (var item in Schedules)
+            {
+                <div class="card">
+                    <a asp-controller="Home" asp-action="Schedule_Profile" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@item.FamilyGroupID" asp-route-ScheduleID="@item.ScheduleID"><div class="dashboardUserImage" id="profileAnimalOne"></a>
+                    <p class="textEvents" id="member_Name_One">@item.ScheduleName</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Type: @item.ScheduleType</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Frequency: @item.Frequency</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Starts: @item.StartDateTime</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Ends: @item.EndDateTime</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Dose: @item.Dose</p>
+                    <p class="cardImageSection" id="memberOne_Attribute_One">Details: @item.Description</p>
+                </div>
+            }
 
+            <a asp-controller="Home" asp-action="Create_Schedule" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID" >
             <div class="card">
               <br>
               <p class="textEvents" style="font-size: xx-large;">+</p>
               <p class="textEvents" style="font-size: large;">Add Schedule</p>
             </div>            
-      </div>
+            </a>
+
+            <a asp-action="Delete_Family_Group" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID" asp-route-FamID="@FamID">
+                <button class="buttonCustomTitle">&nbsp;Delete Family Group&nbsp;</button>
+            </a>
+
+            <a asp-controller="Home" asp-action="Delete_Admin" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID"><button class="buttonCustomTitle">&nbsp;Remove Admin&nbsp;</button></a>
+            <a asp-controller="Home" asp-action="Delete_Member" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID"><button class="buttonCustomTitle">&nbsp;Remove Member&nbsp;</button></a>
+            <a asp-controller="Home" asp-action="Delete_Pet" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@FamID"><button class="buttonCustomTitle">&nbsp;Remove Pet&nbsp;</button></a>
+            <br></br>
+        </div>
 
       <div class="lineDividerSection"> <!--menu divider--></div>
 
@@ -207,17 +227,14 @@
   </div>
 
     <br>
-  <div class="sectionSub" style="margin-left:30px;">     
-      <button class="buttonCustomTitle">&nbsp;Transfer Ownership&nbsp;</button>
-      <button class="buttonCustomTitle">&nbsp;Remove Member&nbsp;</button>           
-      <button class="buttonCustomTitle">&nbsp;Remove Pet&nbsp;</button>  
-      <button class="buttonCustomTitle">&nbsp;Delete Family Group&nbsp;</button>  
-      <br></br>                  
+    <!--WIP adding asp CRUD actions to these buttons-->
+  <div class="sectionSub" style="margin-left:30px;">
+                      
   </div>
 
 
       
-
+  </div>
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+@model GroupTherapyWebAppFinal.Models.UserModel
 @{
     ViewData["Title"] = "Member_Profile";
 }
@@ -6,23 +7,21 @@
     ViewBag.Title = "Member_Profile";
 }
 
-<!--Developed by Ashton Nicholson 4/10/2022 -->
+@{
+    Layout = "_Layout";
+}
+
+@{
+    var ViewUser = ViewData["ViewUser"] as UserModel;
+    var Family = ViewData["Family"] as List<FamilyGroup>;
+    var Pet = ViewData["Pet"] as List<Pet>;
+}
+
+<!--Developed by Group Therapy 4/10/2022 -->
 <html>
 
 <head>
-    <meta name="description" content="" />
-    <!--meta description-->
-    <meta name="keywords" content="" />
-    <!--meta keywords-->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | My Profile</title>
-    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
-    <!--css stylesheet-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="icon" href="" />
-    <!--Fav Icon-->
-
 </head>
 
 <body>
@@ -38,7 +37,7 @@
 
             <!--Search Entry-->
             <form action="/" method="GET" class="form">
-                <input type="text" id="search" placeholder="Search..."></input>
+                <input type="text" id="search" placeholder="Search...">
             </form>
 
             <!-- Options for text based nav items or icons ***********************-->
@@ -48,17 +47,23 @@
             -->
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Dashboard", "Home")" target="_self">
+                    <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@Model.UserModelID">
                         <i class="fa fa-user"
               aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Family_Group", "Home")" 
-                        target="_self"><i class="fa fa-users"
+                    <a asp-controller="Home" asp-action="All_Fam_Groups" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-users"
               aria-hidden="true" title="Family Groups"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" asp-action="All_Pets" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-paw"
               aria-hidden="true" title="Pets"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-calendar"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" a
+                        sp-action="All_Schedules" asp-route-UserID="@Model.UserModelID"><i class="fa fa-calendar"
               aria-hidden="true" title="Calendar"></i></a></span></p>
         </div>
         <!-- Add in the login button -->
@@ -80,53 +85,62 @@
          <div class="membersProfileMain">
           <div class="membersProfileSection">
             <div class="membersProfileSectionImage">
-              <p class="textEvents" style="font-size:X-large">Laurie Harper&nbsp;&nbsp;</p>
+              <p class="textEvents" style="font-size:X-large">@ViewUser.Name&nbsp;&nbsp;</p>
               <div class="dashboardUserImage" id="profileOne"></div>                        
             </div>
 
-            <div class="membersProfileSectionDetails">
-              <p class="textEvents" style="font-size:x-large">Personal Details&nbsp;&nbsp;</p>
-              <p class="textEvents">Laurie (Lor)&nbsp;&nbsp;</p>
-              <p class="textEvents">Harper&nbsp;&nbsp;</p>              
+            <!--Personal profile information-->
+            <div class="membersProfileSectionDetails">  
+                <p class="textEvents" style="font-size:x-large">Name:@ViewUser.Name&nbsp;&nbsp;</p>
+                <p class="textEvents">Age group:@ViewUser.UserType</p>
+                <p class="textEvents">Gender:@ViewUser.Gender</p>
+                <p class="textEvents">Date Created:@ViewUser.DateCreated</p>
             </div>
 
+                <!--Family infomation-->
             <div class="membersProfileSectionDetails">
-              <p class="textEvents" style="font-size:x-large">Family&nbsp;&nbsp;</p>              
-              <p class="textEvents">1. Harper&nbsp;&nbsp;</p>              
-              <p class="textEvents">2. Evans&nbsp;&nbsp;</p>  
+              <p class="textEvents" style="font-size:x-large">Family&nbsp;&nbsp;</p>
+              @foreach(var item in Family)
+              {
+                  <p class="textEvents">@item.FamilyName</p>
+                  <p class="textEvents">Created: @item.DateCreated</p>
+              }                        
+              
+               
             </div>
-
-                <a href="@Url.Action("Pet_Profile", "Home")" target="_self">
-                    <div class="membersProfileSectionDetails">
-              <p class="textEvents" style="font-size:x-large">Pets&nbsp;&nbsp;</p>              
-              <p class="textEvents">1. Rex Harper&nbsp;&nbsp;</p>              
-              <p class="textEvents">2. Bandit Harper&nbsp;&nbsp;</p> 
-            </div></a>
+                        
+            <div class="membersProfileSectionDetails">
+                <p class="textEvents" style="font-size:x-large">Pets&nbsp;&nbsp;</p>
+                @foreach(var item in Pet)
+                {
+                   <p class="textEvents">@item.Name</p>     
+                }
+             
+            </div>
             
           </div>
 
           <div class="membersProfileSection">
             <p class="textEvents" style="font-size:X-large; text-align: left;">Your Family Groups</p>
-            <div class="familyGroupInner"> 
+            <div class="familyGroupInner">
+              <Family>
+                  @foreach (var item in Family)
+                  {
+                      <div class="familyUserGridItem">
+                        <a asp-controller="Home" asp-action="Family_Group" asp-route-UserID="@Model.UserModelID" asp-route-GroupID="@item.FamilyGroupID"><div class="dashboardUserImage" id="profileMain"></div></a>
+                        <p class="textMemberDashboardName" id="member_Name_One">@item.FamilyName</p>
+                        <p class="textMemberDashboard" id="memberOne_Attribute_One">Created: @item.DateCreated</p>
+                      </div>
+                  }
+              </Family>
 
-              <div class="familyUserGridItem">
-                        <a href="@Url.Action("Family_Group", "Home")" target="_self"><div class="dashboardUserImage" id="profileMain"></div></a>
-                <p class="textMemberDashboardName" id="member_Name_One">Harper Family</p>
-                <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
-              </div>    
-              
-              <div class="familyUserGridItem">
-                        <a href="@Url.Action("Family_Group", "Home")" target="_self"><div class="dashboardUserImage" id="profileTwo"></div></a>
-                <p class="textMemberDashboardName" id="member_Name_One">Evans Family</p>
-                <p class="textMemberDashboard" id="memberOne_Attribute_One">Attributes</p>                                                
-              </div>   
-
-            
+              <a asp-controller="Home" asp-action="Add_Family_Group" asp-route-UserID="@Model.UserModelID">
               <div class="familyUserGridItem">
                 <p class="textMemberDashboardName" id="member_Name_One" style="font-size:xx-large; margin-top: 25%;">+</p>
                 <p class="textMemberDashboard" id="memberOne_Attribute_One" style="font-size:large;">Add Family Group</p>                                                
-              </div>     
-          </div>          
+              </div>  
+              </a>
+            </div>          
         </div>
       </div>
       <br></br>
@@ -159,6 +173,7 @@
             </div>
             
         </div>
+       </div>
     </div>
 </body>
 

@@ -1,0 +1,32 @@
+﻿@model GroupTherapyWebAppFinal.Models.Trend
+
+@{
+    ViewData["Title"] = "Add Trend";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int UserID = ViewBag.UserID;
+    int PetID = ViewBag.PetID;
+}
+
+<h1>Add a pet Trend</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddFamilyGroup" asp-route-UserID="@UserID" asp-route-PetID="@PetID">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="PetID" type="hidden" class="form-control" style="margin-bottom:8px;" value="@PetID" />
+            <input asp-for="Date" type="hidden" class="form-control" style="margin-bottom:8px;" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            <div class="form-group">
+                <label asp-for="Height" class="control-label"></label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weight" class="control-label"></label>
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Entry" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

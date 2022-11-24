@@ -1,3 +1,4 @@
+@model GroupTherapyWebAppFinal.Models.UserModel
 @{
     ViewData["Title"] = "Pet_Profile";
 }
@@ -6,28 +7,26 @@
     ViewBag.Title = "Pet_Profile";
 }
 
-<!--Developed by Ashton Nicholson 4/10/2022 -->
+@{
+    Layout = "_Layout";
+}
+
+@{
+    var Pet = ViewData["Pet"] as Pet;
+    var Family = ViewData["Family"] as List<FamilyGroup>;
+    var Sibling = ViewData["Siblings"] as List<Pet>;
+    var Trends = ViewData["Trends"] as List<Trend>;
+}
+
+<!--Developed by Group Therapy 4/10/2022 -->
 <html>
 
 <head>
-    <meta name="description" content="" />
-    <!--meta description-->
-    <meta name="keywords" content="" />
-    <!--meta keywords-->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PetPal | Pet Profile</title>
-    <link id="pagestyle" rel="stylesheet" href="~/css/style.css" />
-    <!--css stylesheet-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="icon" href="" />
-    <!--Fav Icon-->
-
 </head>
 
 <body>
     <div class="mainBox">
-
         <!-- Add in the Main Navigation Menu -->
         <div class="navigationBar">
             <!-- Options for Icon based LOGO or Image based LOGO *******************-->
@@ -38,7 +37,7 @@
 
             <!--Search Entry-->
             <form action="/" method="GET" class="form">
-                <input type="text" id="search" placeholder="Search..."></input>
+                <input type="text" id="search" placeholder="Search...">
             </form>
 
             <!-- Options for text based nav items or icons ***********************-->
@@ -48,17 +47,20 @@
             -->
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Dashboard", "Home")" target="_self">
+                    <a asp-controller="Home" asp-action="Member_Profile" asp-route-UserID="@Model.UserModelID" asp-route-ViewID="@Model.UserModelID">
                         <i class="fa fa-user"
               aria-hidden="true" title="User Profile"></i></a></span></p>
             <p class="navigationItemIcon">
                 <span>
-                    <a href="@Url.Action("Family_Group", "Home")" target="_self">
+                    <a asp-controller="Home" asp-action="All_Fam_Groups" asp-route-UserID="@Model.UserModelID">
                         <i class="fa fa-users"
               aria-hidden="true" title="Family Groups"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-paw"
+            <p class="navigationItemIcon">
+                <span>
+                    <a asp-controller="Home" asp-action="All_Pets" asp-route-UserID="@Model.UserModelID">
+                        <i class="fa fa-paw"
               aria-hidden="true" title="Pets"></i></a></span></p>
-            <p class="navigationItemIcon"><span><a href="" target="_self"><i class="fa fa-calendar"
+            <p class="navigationItemIcon"><span><a asp-controller="Home" asp-action="All_Schedules" asp-route-UserID="@Model.UserModelID"><i class="fa fa-calendar"
               aria-hidden="true" title="Calendar"></i></a></span></p>
         </div>
         <!-- Add in the login button -->
@@ -76,40 +78,74 @@
             Harper Family - Rex Harper Profile
          </p>
          <br>
-         <!--members profile information-->
+         <!--Pet profile information-->
          <div class="membersProfileMain">
           <div class="membersProfileSection">
-            <div class="membersProfileSectionImage">
-              <p class="textEvents" style="font-size:X-large">Rex Harper&nbsp;&nbsp;</p>              
-              <div class="dashboardUserImage" id="profileAnimalOne"></div>                     
-            </div>
+              <!--Name WIP-->
+              <div class="membersProfileSectionImage">
+                  <p class="textEvents" style="font-size:X-large">@Pet.Name&nbsp;&nbsp;</p>
+                  <div class="dashboardUserImage" id="profileAnimalOne"></div>
+              </div>
 
-            <div class="membersProfileSectionDetails">
-              <p class="textEvents" style="font-size:x-large">Personal Details&nbsp;&nbsp;</p>
-              <p class="textEvents">Rexamis (Rex)&nbsp;&nbsp;</p>
-              <p class="textEvents">Harper&nbsp;&nbsp;</p>              
-            </div>
+              <!--Personal details-->
+              <div class="membersProfileSectionDetails">
+                  <p class="textEvents" style="font-size:x-large">Personal Details&nbsp;&nbsp;</p>
+                  <p class="textEvents">Species: @Pet.Species&nbsp;&nbsp;</p>
+                  <p class="textEvents">Breed: @Pet.Breed&nbsp;&nbsp;</p>
+                  <p class="textEvents">DOB: @Pet.DOB&nbsp;&nbsp;</p>
+              </div>
+              
+              <!--Family group-->
+              <div class="membersProfileSectionDetails">
+                  <p class="textEvents" style="font-size:x-large">Family&nbsp;&nbsp;</p> 
+                  <Family>
+                      @foreach(var item in Family)
+                      {
+                          <p class="textEvents">@item.FamilyName</p>
+                      }
+                  </Family>
+              </div>
 
-            <div class="membersProfileSectionDetails">
-              <p class="textEvents" style="font-size:x-large">Family&nbsp;&nbsp;</p>              
-              <p class="textEvents">1. Harper&nbsp;&nbsp;</p>                            
-            </div>
-
-            <div class="membersProfileSectionDetails">
-              <p class="textEvents" style="font-size:x-large">Siblings&nbsp;&nbsp;</p>              
-              <p class="textEvents">1. Bandit Harper&nbsp;&nbsp;</p>                            
-            </div>
-            
+              <!--Siblings-->
+              <div class="membersProfileSectionDetails">
+                  <p class="textEvents" style="font-size:x-large">Sibling&nbsp;&nbsp;</p>
+                  <Sibling>
+                      @foreach (var item in Sibling)
+                      {
+                          <p class="textEvents">@item.Name</p>
+                      }
+                  </Sibling>
+              </div>
+                          
           </div>
 
           <div class="membersProfileSection">
             
             <p class="textEvents" style="font-size:X-large; text-align: left;">Trends</p>               
-            <button class="buttonCustomTitle">&nbsp;Weight&nbsp;</button>
-            <button class="buttonCustomTitle">&nbsp;Height&nbsp;</button>
+            <br />
             <div class= "trendBox"> 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Height
+                            </th>
+                            <th>
+                                Weight
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @Html.Raw(ViewData["Trends"])
+                    </tbody>
+                </table>
+                
+                <!--dummy figure chart - Used as a placeholder
 
-              <!--dummy figure chart-->
+
           <figure class="css-chart" style="--widget-size: 200px;">
               <ul class="line-chart">
                 <li style="--x: 40px; --y: 83.3333px;">
@@ -133,20 +169,18 @@
                   <div class="line-segment" style="--hypotenuse: 0; --angle:0;"></div>
                 </li>    
               </ul>
-            </figure>
-
-           
+                      </figure>-->           
 
             </div>           
-            <br> 
-            <input type="number"></input>
-            <button class="buttonCustomTitle">&nbsp;Add New Weight&nbsp;</button>
-            
+            <br>
+
+                <a asp-action="Add_Trend" asp-route-UserID="@Model.UserModelID" asp-route-PetID="@Pet.PetID"><button class="buttonCustomTitle">&nbsp;Add New&nbsp;</button></a>
+
          </div>
 
 
       </div>
-      <br></br>
+      <br>
       <div class="lineDividerSection"> <!--menu divider--></div>
 
        <!--Upcoming Events-->
@@ -178,6 +212,7 @@
         </div>
     </div>
     <script src="~/js/lineChart.js"></script>
+    </div>
 </body>
 
 </html>
