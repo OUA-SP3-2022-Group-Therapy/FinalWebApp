@@ -17,7 +17,7 @@
                 <input asp-for="FamilyName" class="form-control" />
                 <span asp-validation-for="FamilyName" class="text-danger"></span>
             </div>
-            <input asp-for="DateCreated" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            <input asp-for="DateCreated" type="hidden" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
             <div class="form-group">
                 <label asp-for="MemberStatus" class="control-label"></label>
                 <input asp-for="MemberStatus" class="form-control" />

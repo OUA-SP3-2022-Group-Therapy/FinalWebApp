@@ -127,19 +127,26 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>
+                            <th class="textEvents">
                                 Date
                             </th>
-                            <th>
+                            <th class="textEvents">
                                 Height
                             </th>
-                            <th>
+                            <th class="textEvents">
                                 Weight
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @Html.Raw(ViewData["Trends"])
+                    <tbody class="textEvents">
+                            @foreach (var item in Trends)
+                            {
+                                <tr>
+                                    <td class="textEvents">@item.Date</td>
+                                    <td class="textEvents">@item.Height</td>
+                                    <td class="textEvents">@item.Weight</td>
+                                </tr>
+                            }
                     </tbody>
                 </table>
                 

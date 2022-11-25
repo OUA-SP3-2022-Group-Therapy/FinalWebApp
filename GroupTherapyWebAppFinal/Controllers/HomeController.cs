@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Drawing;
 using System.Runtime.Intrinsics.X86;
 using System.Text.RegularExpressions;
@@ -45,16 +46,12 @@ namespace GroupTherapyWebAppFinal.Controllers
 
         //Create a new user task - Joshua Wagner
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("UserModelID,Email,Password,Name,UserType,Gender,DateCreated")] UserModel userModel)
+        public async Task<IActionResult> CreateUser([Bind("UserModelID,Email,Password,Name,UserType,Gender,DateCreated")] UserModel userModel)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(userModel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
-            }
-
-            return View("Index","Home");
+            //return Content(userModel.Gender.ToString());
+            _context.Add(userModel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
         }
 
         //Verifys the user's identity with the input fields - Joshua Wagner
@@ -193,6 +190,7 @@ namespace GroupTherapyWebAppFinal.Controllers
             ViewData["Family"] = f;
 
             return View(user);
+            //return Content(schedules.ElementAt(0).ScheduleName);
         }
 
         //Gets the information for the pet page to be displayed - Joshua Wagner
@@ -357,50 +355,73 @@ namespace GroupTherapyWebAppFinal.Controllers
         [HttpPost]
         public async Task<IActionResult> AddTrend([Bind("PetID,Date,Height,Weight")] Trend trend, int UserID, int PetID)
         {
-            if (ModelState.IsValid)
-            {
+            try
+            {   
                 _context.Add(trend);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Pet_Profile", new { UserID, PetID });
+                
             }
-            return RedirectToAction("Pet_Profile", new { UserID, PetID });
+            catch (Exception e)
+            {
+                return NotFound(e.Source);
+            }
+            
         }
 
         [HttpPost]
         public async Task<IActionResult> AddFamilyGroup([Bind("FamilyGroupID,FamilyName,DateCreated,MemberStatus")] FamilyGroup familyGroup, int UserID)
         {
-            if (ModelState.IsValid)
+            try
             {
                 _context.Add(familyGroup);
-                ///need to create and add user membership
                 await _context.SaveChangesAsync();
+
+                DashboardDAO dashboard = new DashboardDAO();
+                FamilyGroup family = dashboard.FetchNewGroup();                
+                Membership membership = new Membership();
+                membership.UserModelID = UserID;
+                membership.FamilyGroupID = family.FamilyGroupID;
+                membership.IsAdmin = 1;
+                _context.Add(membership);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            catch (Exception e)
+            {
+                return NotFound(e.Source);
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> AddMember([Bind("UserModelID,FamilyGroupID,IsAdmin")] Membership membership, int UserID, int GroupID)
         {
-            if (ModelState.IsValid)
-            {
+            try
+            { 
                 _context.Add(membership);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Family_Group", new { UserID, GroupID });
             }
-            return RedirectToAction("Family_Group", new { UserID, GroupID });
+            catch (Exception e)
+            {
+                return NotFound(e.Source);
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPet([Bind("UserModelID,FamilyGroupID,IsAdmin")] Pet pet, int UserID, int GroupID)
+        public async Task<IActionResult> AddPet([Bind("PetID,Name,Species,Breed,DOB,Allergies,FamilyGroupID")] Pet pet, int UserID, int GroupID)
         {
-            if (ModelState.IsValid)
+            try
             {
                 _context.Add(pet);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Family_Group", new { UserID, GroupID });
             }
-            return RedirectToAction("Family_Group", new { UserID, GroupID });
+            catch(Exception e)
+            {
+                return NotFound(e.Source);
+            }
         }
 
         [HttpGet]
@@ -456,13 +477,17 @@ namespace GroupTherapyWebAppFinal.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSchedule([Bind("ScheduleID,ScheduleName,StartDateTime,EndDateTime,ScheduleType,Frequency,Dose,Description,FamilyGroupID")] Schedule schedule, int UserID, int GroupID)
         {
-            if (ModelState.IsValid)
+            try
             {
                 _context.Add(schedule);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Family_Group", new {UserID, GroupID});
             }
-            return RedirectToAction("Family_Group", new { UserID, GroupID });
+            catch (Exception e)
+            {
+                return NotFound(e.Source);
+            }
+            
         }
 
         [HttpGet]

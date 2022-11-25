@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using System.Diagnostics.Metrics;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace GroupTherapyWebAppFinal.Services
 {
@@ -171,7 +172,7 @@ namespace GroupTherapyWebAppFinal.Services
                     sqlConnection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
-                    if (reader.Read())
+                    while (reader.Read())
                     {
                         Pet pets = new Pet();
                         pets.PetID = reader.GetInt32(0);
@@ -354,7 +355,7 @@ namespace GroupTherapyWebAppFinal.Services
                     sqlConnection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
-                    if (reader.Read())
+                    while (reader.Read())
                     {
                         schedule.ScheduleID = reader.GetInt32(0);
                         schedule.ScheduleName = reader.GetString(1);
@@ -362,6 +363,9 @@ namespace GroupTherapyWebAppFinal.Services
                         schedule.EndDateTime = reader.GetDateTime(3);
                         schedule.ScheduleType = reader.GetString(4);
                         schedule.Frequency = reader.GetString(5);
+                        schedule.Dose = reader.GetString(6);
+                        schedule.Description = reader.GetString(7);
+                        schedule.FamilyGroupID = reader.GetInt32(8);
                     }
                 }
                 catch (Exception e)
@@ -376,8 +380,6 @@ namespace GroupTherapyWebAppFinal.Services
         //Used to fetch all the schedules for a specific family group - Joshua Wagner
         public List<Schedule> FetchSchedules(int FamilyID)
         {
-            List<Schedule> returnList = new List<Schedule>();
-
             string sqlQuery = "SELECT * FROM dbo.Schedules WHERE FamilyGroupID = @FamilyGroupID";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -388,22 +390,52 @@ namespace GroupTherapyWebAppFinal.Services
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        Schedule schedule = new Schedule();
-                        schedule.ScheduleID = reader.GetInt32(0);
-                        schedule.ScheduleName = reader.GetString(1);
-                        schedule.StartDateTime = reader.GetDateTime(2);
-                        schedule.EndDateTime = reader.GetDateTime(3);
-                        schedule.ScheduleType = reader.GetString(4);
-                        schedule.Frequency = reader.GetString(5);
-                    }
-                }
-            }
+                List<Schedule> returnList = new List<Schedule>();
 
-            return returnList;
+                while (reader.Read())
+                {
+                    Schedule schedule = new Schedule();
+                    schedule.ScheduleID = reader.GetInt32(0);
+                    schedule.ScheduleName = reader.GetString(1);
+                    schedule.StartDateTime = reader.GetDateTime(2);
+                    schedule.EndDateTime = reader.GetDateTime(3);
+                    schedule.ScheduleType = reader.GetString(4);
+                    schedule.Frequency = reader.GetString(5);
+                    schedule.Dose = reader.GetString(6);
+                    schedule.Description = reader.GetString(7);
+                    schedule.FamilyGroupID = reader.GetInt32(8);
+                    returnList.Add(schedule);
+                }
+
+                return returnList;
+
+            }
+        }
+
+        //Used to fetch the details of a recently added family group
+        public FamilyGroup FetchNewGroup()
+        {
+            string sqlQuery = "SELECT * FROM dbo.FamilyGroups WHERE FamilyGroupID = (SELECT MAX(FamilyGroupID) FROM FamilyGroups)";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                FamilyGroup FGroup = new FamilyGroup();
+
+                if (reader.Read())
+                {
+                    FGroup.FamilyGroupID = reader.GetInt32(0);
+                    FGroup.FamilyName = reader.GetString(1);
+                    FGroup.DateCreated = reader.GetDateTime(2);
+                    FGroup.MemberStatus = reader.GetString(3);
+                }
+
+                return FGroup;
+            }
         }
     }
 }

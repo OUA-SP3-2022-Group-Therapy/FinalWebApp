@@ -1,36 +1,17 @@
 ﻿@model GroupTherapyWebAppFinal.Models.UserModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "SignUp";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<html>
-    <!-- Developed by Group Therapy on 28/10/2022 -->
-<head>
- 
-</head>
-
-
-<body>
-    <div class="mainBox">
-
-        <!-- Add in the Main Navigation Menu -->
-        <div class="navigationBar">
-            <!-- Options for Icon based LOGO or Image based LOGO *******************-->
-            <p class="navigationLogoIcon"><span><i class="fa fa-user-circle" aria-hidden="true"></i></span></p>
-            <!--<p class="navigationLogo"><span><img class="navigationLogoImage" src="images/logo.png"></img></span></p>-->
-            <p class="navigationTitleName">LOGO</p>
-        </div>
-        <br>
-
-       <!--Page Text Area-->
+<p class="pageTitleTextWelcome">Sign up to</p>
+<p class="pageLogoFancy">PetPal</p>
+<div class="mainBox">
+    <div class="col-md-4">
         <div class="welcomeScreenMain">
             <div class="welcomeScreenSection">
-                <p class="pageTitleTextWelcome">Sign up to</p>
-                <p class="pageLogoFancy">PetPal</p>
-                <!--Form Buttons-->
-                <form class="signUpForm" id="form" name="signupForm">
+                <form asp-action="CreateUser">
 
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -42,7 +23,7 @@
 
                     <div class="form-group">
                         <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" style="margin-bottom:8px;" />
+                        <input asp-for="Password" class="form-control" style="margin-bottom:8px; type="password" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
 
@@ -63,13 +44,9 @@
                         <input asp-for="Gender" class="form-control" style="margin-bottom:8px;" />
                         <span asp-validation-for="Gender" class="text-danger"></span>
                     </div>
+                    
+                    <input asp-for="DateCreated" type="hidden" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
 
-                    <div class="form-group">
-                        <input asp-for="DateCreated" type="hidden" class="form-control" style="margin-bottom:8px;" value="@DateTime.Now.ToString("yyyy-MM-dd")"/>
-                        <span asp-validation-for="DateCreated" class="text-danger"></span>
-                    </div>
-
-                    <!--SignUp Button-->
                     <div class="form-group">
                         <input type="submit" value="Sign Up" class="buttonCustomTitle" />
                     </div>
@@ -78,13 +55,13 @@
             <!--Image/Slideshow area.-->
             <div class="welcomeScreenSection">
                 <img src="images/cat_welcome.png" alt="Cat Head.">
-            </div>            
+            </div> 
         </div>
-        @section Scripts {
-            @{
-                await Html.RenderPartialAsync("_ValidationScriptsPartial");
-            }
-        }
-</body>
-</html>
+    </div>
+</div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
